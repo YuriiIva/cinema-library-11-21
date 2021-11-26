@@ -1,0 +1,10 @@
+.header {
+  height: 230px;
+  background-image: url(../images/bg_library_x1.jpg);
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    background-image: url(../images/bg_library_x2.jpg);
+  }
+  object-fit: cover;
+}
