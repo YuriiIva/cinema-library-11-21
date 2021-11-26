@@ -1,24 +1,86 @@
 .hero {
   margin: 0 auto;
-  height: 230px;
+  padding: 120px 0 66px 0;
+
+  max-width: 480px;
+  max-height: 230px;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  gap: 15px;
 
   background-repeat: no-repeat;
-  background: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-    url(../img/bg_library_x2.jpg);
-  // @media screen and (min-width: "480px") {
-  //   background-image: url(../img/bg_library_x1.jpg);
-  //   @media (min-device-pixel-ratio: 2),
-  //     (min-resolution: 192dpi),
-  //     (min-resolution: 2dppx) {
-  //     background-image: url(../img/bg_library_x2.jpg);
-  //   }
-  // }
-  // @media screen and (min-width: "1024px") {
-  //   background-image: url(../img/bg_library_x1.jpg);
-  //   @media (min-device-pixel-ratio: 2),
-  //     (min-resolution: 192dpi),
-  //     (min-resolution: 2dppx) {
-  //     background-image: url(../img/bg_library_x2.jpg);
-  //   }
-  // }
+  background-size: cover;
+  background-position: 50% 0;
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.56),
+      rgba(0, 0, 0, 0.56)
+    ),
+    url(../img/hero2/hero2-desk-x1.jpg);
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(../img/hero2/hero2-desk-x2.jpg);
+  }
+  @media screen and (min-width: "768px") {
+    max-width: 768px;
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(../img/hero2/hero2-tab-x1.jpg);
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url(../img/hero2/hero2-tab-x2.jpg);
+    }
+  }
+  @media screen and (min-width: "1024px") {
+    max-width: 1200px;
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(../img/hero2/hero2-desk-x1.jpg);
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url(../img/hero2/hero2-desk-x2.jpg);
+    }
+  }
+  &__btn {
+    cursor: pointer;
+    border: 1px solid var(--white-color);
+    border-radius: 5px;
+    background-color: transparent;
+    color: var(--white-color);
+
+    line-height: calc(16 / 12);
+    text-transform: uppercase;
+    padding: 14px 38px 12px 38px;
+    &-active {
+      border-color: var(--accent-color);
+      background-color: var(--accent-color);
+    }
+  }
 }
