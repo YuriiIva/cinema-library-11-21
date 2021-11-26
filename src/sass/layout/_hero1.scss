@@ -8,3 +8,36 @@
 //   }
 //   object-fit: cover;
 // }
+
+.hero1 {
+  margin: 0 auto;
+  height: 230px;
+
+  background-repeat: no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(../img/desktop-1x.jpg);
+}
+.hero1-search {
+  //   position: relative;
+  padding-top: 113px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 336px;
+  border-bottom: 0.5px solid #ffffff;
+}
+
+.hero1-input {
+  border: none;
+  font-size: 14px;
+  line-height: calc(16 / 14);
+  background-color: transparent;
+  color: #ffffff;
+}
+
+.btn-hero1 {
+  background-color: transparent;
+  border: none;
+  width: 24px;
+  height: 24px;
+}
