@@ -15,5 +15,8 @@
     <symbol id="search" viewBox="0 0 32 32">
       <path fill="none" stroke="#fff" style="stroke:var(--color3, #fff)" stroke-linejoin="round" stroke-linecap="round" stroke-width="2.7" d="M15 25a11 11 0 1 0 0-21v0a11 11 0 1 0 0 21v0zm13 3-6-6"/>
     </symbol>
+    <symbol id="close" viewBox="0 0 32 32">
+      <path stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="2.1333" d="M8.533 8.533l14.933 14.933M8.533 23.467l14.933-14.933"></path>
+    </symbol>
   </defs>
 </svg>
