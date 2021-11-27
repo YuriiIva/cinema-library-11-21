@@ -1,8 +1,8 @@
 <div class="backdrop">
-  <div class="modal-card">
+  <div class="modal-card js-modal-btn-listener">
     <button class="modal-btn-close" type="button" data-action="close">
-      <svg class="modal-btn-close__icon">
-        <use href=""></use>
+      <svg class="modal-btn-close__icon" width="30" height="30">
+        <use href="./img/sprite.svg#close"></use>
       </svg>
     </button>
     <div class="modal-info">
@@ -15,7 +15,9 @@
           <tbody class="table__body">
             <tr class="table__row">
               <td class="table__title">Vote / Votes</td>
-              <td class="table__text"><span>7.3</span>/<span>1260</span></td>
+              <td class="table__text">
+                <span class="table__text-vote">7.3</span><span class="votes">/</span>1260
+              </td>
             </tr>
             <tr class="table__row">
               <td class="table__title">Popularity</td>
