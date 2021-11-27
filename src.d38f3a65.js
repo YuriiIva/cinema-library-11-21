@@ -5,4 +5,4 @@ parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcel
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/api-services"),require("./js/modal-card"),require("./js/modal-team"),require("./js/render-markup");
 },{"./sass/main.scss":"clu1","./js/api-services":"vqRV","./js/modal-card":"vqRV","./js/modal-team":"vqRV","./js/render-markup":"vqRV"}]},{},["Focm"], null)
-//# sourceMappingURL=/cinema-library-11-21/src.726e69c6.js.map
+//# sourceMappingURL=/cinema-library-11-21/src.d38f3a65.js.map
