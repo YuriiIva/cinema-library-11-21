@@ -4,4 +4,6 @@
   --dark-color: #000000;
   --gray-color: #545454;
   --error-color: #ff001b;
+  --transform-bgc: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
