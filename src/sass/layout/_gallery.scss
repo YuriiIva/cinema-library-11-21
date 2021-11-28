@@ -9,6 +9,11 @@ main{
    justify-content: center;
    padding-top: 20px;
    gap: 20px;
+
+    @media screen and (min-width: 1024px) {
+      justify-content: start;
+      gap: 30px;
+   }   
 }
 
 $img-height: 398px;
@@ -17,7 +22,6 @@ $img-width-tablet:294px;
 $img-width-desktop:274px;
 
 .gallery__item{
-position: relative;
 width: $img-width-mobile;
 
 @media screen and (min-width: 768px) {
@@ -29,14 +33,8 @@ width: $img-width-mobile;
  }
 }
  
-img{
-   position: absolute;
-   left:50%;
-   top:50%;
-   transform: translate(-50%, -50%);
+.gallery__img{
    width: 100%;
-    margin-bottom: 10px;
-    height: $img-height;
     overflow: hidden;
     border-radius: 5px;
 }
@@ -47,6 +45,7 @@ img{
    line-height: calc(16 / 12);
 }
 .gallery__info-name{
+   margin-top: 10px;
    color: #000000;
    text-transform: uppercase;
 }

@@ -12,8 +12,14 @@ main {
   gap: 20px;
 }
 
+@media screen and (min-width: 1024px) {
+  .gallery {
+    justify-content: start;
+    gap: 30px;
+  }
+}
+
 .gallery__item {
-  position: relative;
   width: 280px;
 }
 
@@ -29,14 +35,8 @@ main {
   }
 }
 
-img {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+.gallery__img {
   width: 100%;
-  margin-bottom: 10px;
-  height: 398px;
   overflow: hidden;
   border-radius: 5px;
 }
@@ -49,6 +49,7 @@ img {
 }
 
 .gallery__info-name {
+  margin-top: 10px;
   color: #000000;
   text-transform: uppercase;
 }
