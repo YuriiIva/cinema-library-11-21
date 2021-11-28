@@ -10,12 +10,12 @@ import {
 import { findItemById, preparationGenres } from './modal-card.js';
 
 const checkInfoLsW = id => {
-  const data = storage.get(WEB_LOCAL_WATCHED) ?? [];
+  const data = storage.get(WEB_LOCAL_WATCHED) || [];
   return findItemById(data, id) ? 'remove to watched' : 'add to watched';
 };
 
 const checkInfoLsQ = id => {
-  const data = storage.get(WEB_LOCAL_QUEUE) ?? [];
+  const data = storage.get(WEB_LOCAL_QUEUE) || [];
   return findItemById(data, id) ? 'remove to queue' : 'add to queue';
 };
 
