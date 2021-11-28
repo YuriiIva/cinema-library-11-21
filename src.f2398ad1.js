@@ -17,6 +17,6 @@ parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcel
 },{"./refs":"VyiV","./render-markup":"gNZN"}],"O9Th":[function(require,module,exports) {
 
 },{}],"Focm":[function(require,module,exports) {
-"use strict";require("./sass/main.scss"),require("./js/api-services"),require("./js/modal-card"),require("./js/modal-team"),require("./js/render-markup");
-},{"./sass/main.scss":"clu1","./js/api-services":"vqRV","./js/modal-card":"DnHo","./js/modal-team":"O9Th","./js/render-markup":"gNZN"}]},{},["Focm"], null)
-//# sourceMappingURL=/cinema-library-11-21/src.084fac71.js.map
+"use strict";require("./sass/main.scss"),require("./js/api-services"),require("./js/modal-card"),require("./js/modal-team"),require("./js/render-markup"),require("./js/movieGenres");
+},{"./sass/main.scss":"clu1","./js/api-services":"vqRV","./js/modal-card":"DnHo","./js/modal-team":"O9Th","./js/render-markup":"gNZN","./js/movieGenres":"O9Th"}]},{},["Focm"], null)
+//# sourceMappingURL=/cinema-library-11-21/src.f2398ad1.js.map
