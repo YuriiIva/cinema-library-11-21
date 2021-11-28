@@ -11,6 +11,7 @@
   justify-content: center;
   gap: 15px;
 
+  // BACKGROUND
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 0;
@@ -68,6 +69,8 @@
         url(../img/hero2/hero2-desk-x2.jpg);
     }
   }
+
+  // BUTTONS
   &__btn {
     cursor: pointer;
     border: 1px solid var(--white-color);
@@ -78,9 +81,22 @@
     line-height: calc(16 / 12);
     text-transform: uppercase;
     padding: 14px 38px 12px 38px;
+
+    &:hover,
+    :focus {
+      background-color: var(--white-color);
+      color: var(--dark-color);
+    }
+
     &-active {
       border-color: var(--accent-color);
       background-color: var(--accent-color);
+
+      &:hover,
+      :focus {
+        background-color: var(--accent-color);
+        color: var(--white-color);
+      }
     }
   }
 }
