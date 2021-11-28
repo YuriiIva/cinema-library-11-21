@@ -1,6 +1,6 @@
 import refs from './refs';
 
-import { createMarkup, createMarkupId } from './render-markup';
+import { createMarkup, createMarkupLs } from './render-markup';
 
 // https://api.themoviedb.org/3/movie/550?api_key=1f37c9d1204318c8a24c8b0a5ae713a0
 
@@ -56,8 +56,8 @@ const getFilm = () => {
     });
 };
 
-const renderFotosId = dataId => {
-  const markup = createMarkupId(dataId.results);
+const renderFotosLs = dataLs => {
+  const markup = createMarkupLs(dataLs.results);
   console.log(markup);
   refs.ulGallery.innerHTML = markup;
 };
