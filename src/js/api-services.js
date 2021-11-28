@@ -50,7 +50,7 @@ const getFilm = () => {
   const inputName = refs.inputFilm.value.trim();
 
   searchFilm(inputName)
-    .then(data => renderFotosId(data))
+    .then(renderFotos)
     .catch(error => {
       handError(error);
     });
