@@ -21,6 +21,9 @@ const searchFilm = nameFilm => {
 const createFetch = () => {
   return fetch(`${BASE_URL}/trending/movie/week?api_key=${API_KEY1}`)
     .then(response => {
+      if (response.status === 401) {
+        return Notiflix.Notify.failure(' Invalid API key: You must be granted a valid key');
+      }
       if (!response.ok) {
         return Promise.reject(new Error(error));
       }
@@ -75,10 +78,6 @@ const renderFotosLs = dataLs => {
 };
 
 const handError = error => {
-  // console.dir('error', error.status_code);
-  // if ('status_code') {
-  //   Notiflix.Notify.warning('Invalid API key: You must be granted a valid key.');
-  // }
   Notiflix.Notify.warning(error.message);
 };
 
