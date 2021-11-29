@@ -16,7 +16,9 @@ parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcel
 "use strict";var e=t(require("./refs")),r=require("./render-markup");function t(e){return e&&e.__esModule?e:{default:e}}const o="https://api.themoviedb.org/3",a="1f37c9d1204318c8a24c8b0a5ae713a0",n="f9b3a8f6c2c6ac6ea45f1e88181f9357",c=e=>fetch(`${o}/search/movie?api_key=${a}&query=${e}&id&genres&backdrop_path&original_title&homepage&release_date&vote_average&vote_count&overview&popularity`).then(e=>e.ok?e.json():Promise.reject(new Error(error))),l=()=>fetch(`${o}/trending/movie/week?api_key=${a}`).then(e=>e.ok?e.json():Promise.reject(new Error(error))).then(e=>console.log(s(e))).catch(e=>f(e)),s=t=>{const o=(0,r.createMarkup)(t.results);console.log(o),e.default.ulGallery.innerHTML=o};l();const i=()=>{u()},u=()=>{const r=e.default.inputFilm.value.trim();c(r).then(s).catch(e=>{f(e)})},d=t=>{const o=(0,r.createMarkupLs)(t.results);console.log(o),e.default.ulGallery.innerHTML=o},f=e=>{console.log(e.massege)};e.default.btnFilm.addEventListener("click",i);
 },{"./refs":"VyiV","./render-markup":"gNZN"}],"O9Th":[function(require,module,exports) {
 
-},{}],"Focm":[function(require,module,exports) {
+},{}],"Irho":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.getMovieById=void 0;var e=require("./servises/constants");const o=()=>fetch(`${e.BASE_URL}//genre/movie/list?api_key=${e.API_KEY}&language=en-US`).then(e=>e.ok?e.json():Promise.reject(new Error("Not found")));o().then(({genres:e})=>{localStorage.setItem("movies",JSON.stringify(e))}).catch(e=>console.log(e.message));const t=e=>{try{const t=JSON.parse(localStorage.getItem("movies")).find(o=>o.id===e);return t?t.name:""}catch(o){console.log(o.message)}};exports.getMovieById=t;
+},{"./servises/constants":"wghu"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/api-services"),require("./js/modal-card"),require("./js/modal-team"),require("./js/render-markup"),require("./js/movieGenres");
-},{"./sass/main.scss":"clu1","./js/api-services":"vqRV","./js/modal-card":"DnHo","./js/modal-team":"O9Th","./js/render-markup":"gNZN","./js/movieGenres":"O9Th"}]},{},["Focm"], null)
-//# sourceMappingURL=/cinema-library-11-21/src.f2398ad1.js.map
+},{"./sass/main.scss":"clu1","./js/api-services":"vqRV","./js/modal-card":"DnHo","./js/modal-team":"O9Th","./js/render-markup":"gNZN","./js/movieGenres":"Irho"}]},{},["Focm"], null)
+//# sourceMappingURL=/cinema-library-11-21/src.10045bd7.js.map
