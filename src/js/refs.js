@@ -10,6 +10,8 @@ export default {
   libNav: document.querySelector("[data-lib-page]"),
   heroHome: document.querySelector(".hero1"),
   heroLib: document.querySelector(".hero"),
-  watchedBtn: document.querySelector("[data-watched]"),
-  queueBtn: document.querySelector("[data-queue]"),
+  watchedBtn: document.querySelector("[data-btn-watched]"),
+  queueBtn: document.querySelector("[data-btn-queue]"),
+  watchedList: document.querySelector("[data-watched]"),
+  queueList: document.querySelector("[data-queue]"),
 };
