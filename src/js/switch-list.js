@@ -1,4 +1,5 @@
 import refs from "./refs.js";
+import { onQueueMarkupLs } from "./library";
 
 function switchToQueue() {
   refs.watchedBtn.classList.remove("hero__btn-active");
