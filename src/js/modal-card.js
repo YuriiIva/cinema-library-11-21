@@ -1,5 +1,5 @@
 import refs from './refs.js';
-console.log('🚀 ~ refs', refs);
+
 import {
   BASE_URL_IMG,
   FILE_SIZE,
@@ -78,10 +78,10 @@ function workWithLocalStor(key, btn, obj, id) {
 
 function chechedText(btn, key, boolean) {
   if (key === WEB_LOCAL_WATCHED) {
-    btn.textContent = boolean ? 'add to Watched' : 'remove to Watched';
+    btn.textContent = boolean ? 'add to Watched' : 'remove from Watched';
   }
   if (key === WEB_LOCAL_QUEUE) {
-    btn.textContent = boolean ? 'add to queue' : 'remove to queue';
+    btn.textContent = boolean ? 'add to queue' : 'remove from queue';
   }
 }
 
@@ -100,6 +100,7 @@ function isModalOpen() {
 }
 
 function onModalClose() {
+  refs.modalInfo.innerHTML = '';
   window.removeEventListener('keydown', onEscKeyDown);
   document.body.classList.remove('show-modal', 'no-scroll');
 }
