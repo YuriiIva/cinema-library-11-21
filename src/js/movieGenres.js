@@ -1,5 +1,5 @@
 import { BASE_URL, API_KEY } from './servises/constants';
-ьщмшу;
+
 
 const getMovieGenres = () => {
   return fetch(`${BASE_URL}//genre/movie/list?api_key=${API_KEY}&language=en-US`).then(res => {
