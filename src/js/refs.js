@@ -15,4 +15,6 @@ export default {
   heroLib: document.querySelector('.hero'),
   watchedBtn: document.querySelector('[data-watched]'),
   queueBtn: document.querySelector('[data-queue]'),
+  paginationList: document.querySelector('.pagination-list'),
+  paginationMobileList: document.querySelector('.pagination-mobile-list'),
 };
