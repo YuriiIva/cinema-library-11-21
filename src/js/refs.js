@@ -5,4 +5,5 @@ export default {
   modalInfo: document.querySelector('.js-modal-info'),
   backdrop: document.querySelector('.backdrop'),
   closeModalBtn: document.querySelector('[data-action="close"]'),
+  noSearchName: document.querySelector('.js-hero1-no-search-name'),
 };
