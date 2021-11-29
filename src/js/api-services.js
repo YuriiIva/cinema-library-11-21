@@ -27,22 +27,21 @@ const createFetch = () => {
       }
       return response.json();
     })
-    .then(data => {
-      return console.log(renderFotos(data));
-    })
+    .then(renderFotos)
+
     .catch(error => handError(error));
 };
 
 const renderFotos = data => {
   const markup = createMarkup(data.results);
-  console.log(markup);
+  // console.log(markup);
   refs.ulGallery.innerHTML = markup;
 };
 
 createFetch();
 
 const onSearchFilm = () => {
-  // restart();
+  refs.noSearchName.innerHTML = '';
   getFilm();
 };
 
@@ -50,7 +49,18 @@ const getFilm = () => {
   const inputName = refs.inputFilm.value.trim();
 
   searchFilm(inputName)
-    .then(renderFotos)
+    .then(data => {
+      console.log(data);
+      if (!data.results.length) {
+        console.log('BOOM!!!!');
+        const nameNoSearch = 'Search result not successful. Enter the correct movie name and ';
+        refs.noSearchName.innerHTML = nameNoSearch;
+        console.log('Search result not successful. Enter the correct movie name and ');
+      } else {
+        renderFotos(data);
+      }
+    })
+
     .catch(error => {
       handError(error);
     });
@@ -65,5 +75,10 @@ const renderFotosLs = dataLs => {
 const handError = error => {
   console.log(error.massege);
 };
+
+// const resetSearch = () => {
+//   refs.noSearchName.innerHTML = '';
+//   refs.inputFilm.value = '';
+// };
 
 refs.btnFilm.addEventListener('click', onSearchFilm);
