@@ -85,5 +85,3 @@ const handError = (error) => {
 // };
 
 refs.btnFilm.addEventListener("click", onSearchFilm);
-
-export { createFetch };
