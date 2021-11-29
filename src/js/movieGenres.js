@@ -1,8 +1,7 @@
-import { BASE_URL, API_KEY } from './servises/constants';
-
+import { BASE_URL, API_KEY, BASE_URL_SHORT } from './servises/constants';
 
 const getMovieGenres = () => {
-  return fetch(`${BASE_URL}//genre/movie/list?api_key=${API_KEY}&language=en-US`).then(res => {
+  return fetch(`${BASE_URL_SHORT}/genre/movie/list?api_key=${API_KEY}&language=en-US`).then(res => {
     if (res.ok) {
       return res.json();
     }
@@ -20,6 +19,7 @@ getMovieGenres()
 const getMovieById = id => {
   try {
     const movies = JSON.parse(localStorage.getItem('movies'));
+
     const movie = movies.find(movie => movie.id === id);
     return movie ? movie.name : '';
   } catch (e) {

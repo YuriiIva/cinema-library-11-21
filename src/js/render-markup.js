@@ -1,4 +1,5 @@
 import storage from './servises/localStorage.js';
+import { getMovieById } from './movieGenres';
 
 import {
   WEB_LOCAL_WATCHED,
@@ -69,19 +70,23 @@ function createMarkupInfoModal({
 const createMarkup = data => {
   console.log(data);
   return data
-    .map(
-      ({ poster_path, original_title, genre_ids, release_date, id }) => `
+    .map(({ poster_path, original_title, genre_ids, release_date, id }) => {
+      const genresId = genre_ids.length <= 2 ? genre_ids : genre_ids.slice(0, 2);
+      const genres = genresId.map(id => getMovieById(id)).join(', ');
+      const date = new Date(release_date).getFullYear();
+      const url = poster_path ? `${BASE_URL_IMG + FILE_SIZE}${poster_path}` : '';
+      return `
 <li data-id="${id}" class="gallery__item">
 
-<img src="https://image.tmdb.org/t/p/w500${poster_path}" alt="">
+<img src="${url}" alt="">
 
 <div class="gallery__info">
 <p class="gallery__info-name">${original_title}</p>
-<p class="gallery__information">${genre_ids}|${release_date}</p>
+<p class="gallery__information">${genres}|${date}</p>
 </div>
 </li>
-</ul>`,
-    )
+</ul>`;
+    })
     .join('');
 };
 
