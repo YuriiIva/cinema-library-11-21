@@ -25,4 +25,4 @@ parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcel
 },{"./refs.js":"VyiV"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/api-services"),require("./js/modal-card"),require("./js/modal-team"),require("./js/render-markup"),require("./js/movieGenres"),require("./js/switch-page"),require("./js/switch-list");
 },{"./sass/main.scss":"clu1","./js/api-services":"vqRV","./js/modal-card":"DnHo","./js/modal-team":"O9Th","./js/render-markup":"gNZN","./js/movieGenres":"Irho","./js/switch-page":"YsJ2","./js/switch-list":"fWn9"}]},{},["Focm"], null)
-//# sourceMappingURL=/cinema-library-11-21/src.8aa72beb.js.map
+//# sourceMappingURL=/cinema-library-11-21/src.9d5e4bb5.js.map
