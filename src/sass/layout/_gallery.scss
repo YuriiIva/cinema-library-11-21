@@ -3,7 +3,6 @@ main {
   flex-direction: column;
   background-color: #e5e5e5;
 }
-
 .gallery{
    display: flex;
    flex-wrap: wrap;
@@ -26,8 +25,6 @@ $img-width-mobile: 280px;
 $img-width-tablet: 294px;
 $img-width-desktop: 274px;
 
-
-
 .gallery__item {
   width: $img-width-mobile;
 
@@ -39,17 +36,12 @@ $img-width-desktop: 274px;
   @media screen and (min-width: 1024px) {
     width: $img-width-desktop;
   }
-}
-
- 
+} 
 .gallery__img{
     overflow: hidden;
     border-radius: 5px;
   width: 100%;
-  //   height: $img-height;
-
 }
-
 .galery__info {
   font-family: 'Roboto', sans-serif;
   font-size: 12px;
@@ -69,7 +61,6 @@ $img-width-desktop: 274px;
 .gallery__information {
   margin: 0px 10px 0px 0px;
   color: #ff6b08;
-
 }
 .gallery__rating {
   display: inline-flex;
@@ -81,4 +72,4 @@ $img-width-desktop: 274px;
   background-color: #ff6b01;
   color: #ffffff;
 }
-// fix bag
+
