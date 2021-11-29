@@ -1,8 +1,7 @@
+import Notiflix from 'notiflix';
+
 import refs from './refs';
-
 import { createMarkup, createMarkupLs } from './render-markup';
-
-// https://api.themoviedb.org/3/movie/550?api_key=1f37c9d1204318c8a24c8b0a5ae713a0
 
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY1 = '1f37c9d1204318c8a24c8b0a5ae713a0';
@@ -34,28 +33,31 @@ const createFetch = () => {
 
 const renderFotos = data => {
   const markup = createMarkup(data.results);
-  // console.log(markup);
+
   refs.ulGallery.innerHTML = markup;
 };
 
 createFetch();
 
-const onSearchFilm = () => {
+const onSearchFilm = e => {
+  e.preventDefault();
   refs.noSearchName.innerHTML = '';
   getFilm();
 };
 
 const getFilm = () => {
   const inputName = refs.inputFilm.value.trim();
+  if (!inputName) {
+    refs.noSearchName.innerHTML = '';
+    Notiflix.Notify.failure(' You have not entered  anything! Try again!');
+    return;
+  }
 
   searchFilm(inputName)
     .then(data => {
-      console.log(data);
       if (!data.results.length) {
-        console.log('BOOM!!!!');
         const nameNoSearch = 'Search result not successful. Enter the correct movie name and ';
         refs.noSearchName.innerHTML = nameNoSearch;
-        console.log('Search result not successful. Enter the correct movie name and ');
       } else {
         renderFotos(data);
       }
@@ -73,7 +75,11 @@ const renderFotosLs = dataLs => {
 };
 
 const handError = error => {
-  console.log(error.massege);
+  // console.dir('error', error.status_code);
+  // if ('status_code') {
+  //   Notiflix.Notify.warning('Invalid API key: You must be granted a valid key.');
+  // }
+  Notiflix.Notify.warning(error.message);
 };
 
 // const resetSearch = () => {
@@ -81,4 +87,4 @@ const handError = error => {
 //   refs.inputFilm.value = '';
 // };
 
-refs.btnFilm.addEventListener('click', onSearchFilm);
+refs.form.addEventListener('submit', onSearchFilm);
