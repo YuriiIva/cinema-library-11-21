@@ -16,6 +16,10 @@ main {
       gap: 30px;
    }  
 }
+.gallery__section{
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
 
 $img-height: 398px;
 $img-width-mobile: 280px;
@@ -77,3 +81,4 @@ $img-width-desktop: 274px;
   background-color: #ff6b01;
   color: #ffffff;
 }
+// fix bag
