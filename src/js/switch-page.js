@@ -1,4 +1,7 @@
 import refs from "./refs.js";
+import { onWatchedMarkupLs } from "./library";
+import { createMarkup } from "./render-markup";
+import { createFetch } from "./api-services";
 
 function switchToLibrary(e) {
   e.preventDefault();
@@ -8,8 +11,7 @@ function switchToLibrary(e) {
   refs.heroHome.classList.add("vusually-hidden");
   refs.heroLib.classList.remove("vusually-hidden");
 
-  refs.ulGallery.classList.add("vusually-hidden");
-  refs.ulLibrary.classList.remove("vusually-hidden");
+  onWatchedMarkupLs();
 }
 
 function switchToHome(e) {
@@ -20,8 +22,7 @@ function switchToHome(e) {
   refs.heroLib.classList.add("vusually-hidden");
   refs.heroHome.classList.remove("vusually-hidden");
 
-  refs.ulGallery.classList.remove("vusually-hidden");
-  refs.ulLibrary.classList.add("vusually-hidden");
+  createFetch();
 }
 
 refs.libNav.addEventListener("click", switchToLibrary);
