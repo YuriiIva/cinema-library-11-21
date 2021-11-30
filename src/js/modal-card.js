@@ -7,7 +7,7 @@ import {
   WEB_LOCAL_QUEUE,
 } from './servises/constants.js';
 import { getMovie } from './servises/api.js';
-import { createMarkupInfoModal } from './render-markup.js';
+import { createMarkupInfoModal, createMarkupLs } from './render-markup.js';
 import storage from './servises/localStorage.js';
 
 function createObj(data) {
@@ -95,11 +95,13 @@ function onBackdropClick(event) {
 }
 
 function isModalOpen() {
+  refs.modalInfo.innerHTML = '';
   window.addEventListener('keydown', onEscKeyDown);
   document.body.classList.add('show-modal', 'no-scroll');
 }
 
 function onModalClose() {
+  renderLsMarkupListByActive();
   refs.modalInfo.innerHTML = '';
   window.removeEventListener('keydown', onEscKeyDown);
   document.body.classList.remove('show-modal', 'no-scroll');
@@ -112,3 +114,27 @@ function onEscKeyDown(e) {
 }
 const preparationGenres = array => array.map(({ name }) => name).join(', ');
 export { findItemById, preparationGenres };
+
+function renderLsMarkupListByActive() {
+  if (refs.heroLib.classList.contains('vusually-hidden')) return false;
+
+  if (refs.watchedBtn.classList.contains('hero__btn-active')) {
+    chackIdLsForRender(WEB_LOCAL_WATCHED);
+    return false;
+  }
+
+  if (refs.queueBtn.classList.contains('hero__btn-active')) {
+    chackIdLsForRender(WEB_LOCAL_QUEUE);
+  }
+}
+
+function chackIdLsForRender(key) {
+  let data = storage.get(key);
+  console.log('🚀 ~ data', data);
+  if (!data) {
+    return false;
+  }
+  if (!findItemById(data, data.id)) {
+    refs.ulGallery.innerHTML = createMarkupLs(data);
+  }
+}
