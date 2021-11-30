@@ -2,6 +2,7 @@ import Notiflix from 'notiflix';
 
 import refs from './refs';
 import { createMarkup, createMarkupLs } from './render-markup';
+import { createPagination } from './pagination';
 
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY1 = '1f37c9d1204318c8a24c8b0a5ae713a0';
