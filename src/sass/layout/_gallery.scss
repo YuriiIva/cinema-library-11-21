@@ -1,7 +1,7 @@
 main {
   display: flex;
   flex-direction: column;
-  background-color: #e5e5e5;
+  background-color: #ffffff;
 }
 
 .gallery{
@@ -23,10 +23,9 @@ $img-width-tablet: 294px;
 $img-width-desktop: 274px;
 
 
-
 .gallery__item {
+  cursor: pointer;
   width: $img-width-mobile;
-
 
   @media screen and (min-width: 768px) {
     width: $img-width-tablet;
@@ -42,8 +41,6 @@ $img-width-desktop: 274px;
     overflow: hidden;
     border-radius: 5px;
   width: 100%;
-  //   height: $img-height;
-
 }
 
 .galery__info {
@@ -77,3 +74,5 @@ $img-width-desktop: 274px;
   background-color: #ff6b01;
   color: #ffffff;
 }
+
+

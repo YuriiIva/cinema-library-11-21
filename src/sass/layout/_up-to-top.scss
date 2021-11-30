@@ -1,0 +1,67 @@
+.up {
+  position: fixed;
+  right: 30px;
+  bottom: 50px;
+  display: flex;
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  cursor: pointer;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s ease-in-out;
+  @media screen and (min-width: 1024px) {
+    right: 25px;
+    width: 50px;
+    height: 50px;
+  }
+}
+.up:hover {
+  opacity: 1;
+}
+.up-active {
+  visibility: visible;
+  opacity: 0.5;
+}
+.up-to-top {
+  background-color: #ff6b01;
+  border-radius: 50%;
+}
+.up-to-top:before {
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  display: block;
+  width: 20px;
+  height: 5px;
+  content: '';
+  background-color: #ffffff;
+  transform: translate(0, -50%) rotate(45deg);
+}
+
+.up-to-top:after {
+  position: absolute;
+  top: 50%;
+  right: 40%;
+  display: block;
+  width: 20px;
+  height: 5px;
+  content: '';
+  background-color: #ffffff;
+  transform: translate(0, -50%) rotate(-45deg);
+}
+
+.up-emoji {
+  border-radius: 50%;
+  opacity: 1;
+}
+
+.up-emoji:before {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 36px;
+  content: '\1F446';
+}
