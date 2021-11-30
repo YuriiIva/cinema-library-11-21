@@ -17,4 +17,5 @@ export default {
   queueBtn: document.querySelector('[data-btn-queue]'),
   paginationList: document.querySelector('.pagination-list'),
   paginationMobileList: document.querySelector('.pagination-mobile-list'),
+  paginationWrapper: document.querySelector('.pagination-wrapper'),
 };
