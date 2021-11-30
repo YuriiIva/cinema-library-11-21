@@ -5,15 +5,27 @@ const createPagination = (currentPage, totalPages) => {
 
   setActiveItem(currentPage);
 
-  refs.paginationWrapper.addEventListener('click', e => {
-    if (e.currentTarget === e.target) {
-      console.log('nope');
-      return;
-    }
+  // refs.paginationWrapper.addEventListener('click', e => {
+  //   if (e.currentTarget === e.target) {
+  //     return;
+  //   }
 
-    const item = e.target;
-    console.log(item);
-  });
+  //   const item = e.target;
+
+  //   if (item.dataset.info === 'leftArrow') {
+  //     if (currentPage > 1) {
+  //       currentPage -= 1;
+  //       return;
+  //     }
+  //   }
+
+  //   if (item.dataset.info === 'rightArrow') {
+  //     if (currentPage < totalPages) {
+  //       currentPage += 1;
+  //       return;
+  //     }
+  //   }
+  // });
 };
 
 const renderPagination = (currentPage, totalPages) => {
