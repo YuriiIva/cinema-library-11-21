@@ -29,13 +29,16 @@ const createFetch = () => {
       }
       return response.json();
     })
-    .then(renderFotos)
+    .then(({ page, results, total_pages }) => {
+      renderFotos(results);
 
+      createPagination(page, total_pages);
+    })
     .catch(error => handError(error));
 };
 
-const renderFotos = data => {
-  const markup = createMarkup(data.results);
+const renderFotos = results => {
+  const markup = createMarkup(results);
 
   refs.ulGallery.innerHTML = markup;
 };
