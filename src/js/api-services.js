@@ -66,7 +66,7 @@ const getFilm = () => {
         const nameNoSearch = 'Search result not successful. Enter the correct movie name and ';
         refs.noSearchName.innerHTML = nameNoSearch;
       } else {
-        renderFotos(data);
+        renderFotos(data.results);
       }
     })
 
