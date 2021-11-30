@@ -87,3 +87,5 @@ const handError = error => {
 // };
 
 refs.form.addEventListener('submit', onSearchFilm);
+
+export { createFetch };
