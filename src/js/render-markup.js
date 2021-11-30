@@ -54,7 +54,7 @@ function createMarkupInfoModal({
             </tr>
             <tr class="table__row">
               <td class="table__title">Genre</td>
-              <td class="table__text">${preparationGenres(genres).join(', ')}</td>
+              <td class="table__text">${preparationGenres(genres)}</td>
             </tr>
           </tbody>
         </table>
