@@ -110,5 +110,5 @@ function onEscKeyDown(e) {
     onModalClose();
   }
 }
-const preparationGenres = array => array.map(({ name }) => name);
+const preparationGenres = array => array.map(({ name }) => name).join(', ');
 export { findItemById, preparationGenres };
