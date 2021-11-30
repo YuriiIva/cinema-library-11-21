@@ -13,8 +13,13 @@ export default {
   libNav: document.querySelector('[data-lib-page]'),
   heroHome: document.querySelector('.hero1'),
   heroLib: document.querySelector('.hero'),
+
   watchedBtn: document.querySelector('[data-btn-watched]'),
   queueBtn: document.querySelector('[data-btn-queue]'),
+  noFilm: document.querySelector('[data-no-film]'),
+  noFilmQ: document.querySelector('[data-no-qfilm]'),
+  noFoundBtn: document.querySelector('.gallery__nofoundbtn'),
+
   paginationList: document.querySelector('.pagination-list'),
   paginationMobileList: document.querySelector('.pagination-mobile-list'),
 };
