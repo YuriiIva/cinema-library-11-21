@@ -4,6 +4,16 @@ const createPagination = (currentPage, totalPages) => {
   renderPagination(currentPage, totalPages);
 
   setActiveItem(currentPage);
+
+  refs.paginationWrapper.addEventListener('click', e => {
+    if (e.currentTarget === e.target) {
+      console.log('nope');
+      return;
+    }
+
+    const item = e.target;
+    console.log(item);
+  });
 };
 
 const renderPagination = (currentPage, totalPages) => {
@@ -80,4 +90,16 @@ const setActiveItem = currentPage => {
   }
 };
 
-createPagination(500, 1000);
+// refs.paginationWrapper.addEventListener('click', e => {
+//   if (e.currentTarget === e.target) {
+//     console.log('nope');
+//     return;
+//   }
+
+//   const item = e.target;
+//   console.log(item);
+// });
+
+// createPagination(500, 1000);
+
+export { createPagination };
