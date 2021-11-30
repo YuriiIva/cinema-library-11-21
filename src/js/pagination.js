@@ -1,13 +1,7 @@
-import ref from './refs';
+import refs from './refs';
 
 const createPagination = (currentPage, totalPages) => {
-  if (window.innerWidth > 480) {
-    renderPagination(currentPage, totalPages);
-    return;
-  }
-
-  const markup = renderMiddlePagination(currentPage);
-  ref.paginationMobileList.innerHTML = markup;
+  renderPagination(currentPage, totalPages);
 };
 
 const renderPagination = (currentPage, totalPages) => {
@@ -21,7 +15,7 @@ const renderPagination = (currentPage, totalPages) => {
   }
 
   markup += renderEndPagination(currentPage, totalPages);
-  ref.paginationList.innerHTML = markup;
+  refs.paginationList.innerHTML = markup;
 };
 
 const renderStartPagination = currentPage => {
