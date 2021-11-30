@@ -7,7 +7,7 @@ import {
   WEB_LOCAL_QUEUE,
 } from './servises/constants.js';
 import { getMovie } from './servises/api.js';
-import { createMarkupInfoModal } from './render-markup.js';
+import { createMarkupInfoModal, createMarkupLs } from './render-markup.js';
 import storage from './servises/localStorage.js';
 
 function createObj(data) {
@@ -27,19 +27,21 @@ function renderMarkupInfoModal(data) {
   refs.modalInfo.innerHTML = createMarkupInfoModal(data);
 }
 
-function onClickWorkWithData(e, data) {
+function onClickWorkWithData(e) {
   if (e.target.tagName !== 'BUTTON') return false;
 
   const btn = e.target;
 
-  const objData = createObj(data);
+  const objData = JSON.parse(e.currentTarget.dataset.data);
 
   if (btn.dataset.add === 'watched') {
     workWithLocalStor(WEB_LOCAL_WATCHED, btn, objData, objData.id);
+    return;
   }
 
   if (btn.dataset.add === 'queue') {
     workWithLocalStor(WEB_LOCAL_QUEUE, btn, objData, objData.id);
+    return;
   }
 }
 
@@ -54,10 +56,12 @@ function onShowModalWithInfoMovie(e) {
   getMovie(id)
     .then(movie => {
       renderMarkupInfoModal(movie);
-      refs.modalInfo.addEventListener('click', elem => onClickWorkWithData(elem, movie));
+      refs.modalInfo.dataset.data = JSON.stringify(createObj(movie));
     })
     .catch(console.log);
 }
+
+refs.modalInfo.addEventListener('click', onClickWorkWithData);
 
 refs.ulGallery.addEventListener('click', onShowModalWithInfoMovie);
 
@@ -69,7 +73,7 @@ function workWithLocalStor(key, btn, obj, id) {
   if (data.length >= 1 && findItemById(data, id)) {
     storage.deleteArrayItemFromStorage(key, id);
     chechedText(btn, key, true);
-    return;
+    return false;
   }
 
   storage.saveArrayItemToStorage(key, obj);
@@ -79,9 +83,11 @@ function workWithLocalStor(key, btn, obj, id) {
 function chechedText(btn, key, boolean) {
   if (key === WEB_LOCAL_WATCHED) {
     btn.textContent = boolean ? 'add to Watched' : 'remove from Watched';
+    return false;
   }
   if (key === WEB_LOCAL_QUEUE) {
     btn.textContent = boolean ? 'add to queue' : 'remove from queue';
+    return false;
   }
 }
 
@@ -95,20 +101,48 @@ function onBackdropClick(event) {
 }
 
 function isModalOpen() {
-  window.addEventListener('keydown', onEscKeyDown);
+  refs.modalInfo.innerHTML = '';
   document.body.classList.add('show-modal', 'no-scroll');
 }
 
 function onModalClose() {
-  refs.modalInfo.innerHTML = '';
-  window.removeEventListener('keydown', onEscKeyDown);
+  renderLsMarkupListByActive();
+
   document.body.classList.remove('show-modal', 'no-scroll');
 }
 
+window.addEventListener('keydown', onEscKeyDown);
+
 function onEscKeyDown(e) {
+  console.log(e);
   if (e.code === 'Escape') {
     onModalClose();
   }
 }
-const preparationGenres = array => array.map(({ name }) => name);
+
+const preparationGenres = array => array.map(({ name }) => name).join(', ');
 export { findItemById, preparationGenres };
+
+function renderLsMarkupListByActive() {
+  if (refs.heroLib.classList.contains('vusually-hidden')) return false;
+
+  if (refs.watchedBtn.classList.contains('hero__btn-active')) {
+    chackIdLsForRender(WEB_LOCAL_WATCHED);
+  }
+
+  if (refs.queueBtn.classList.contains('hero__btn-active')) {
+    chackIdLsForRender(WEB_LOCAL_QUEUE);
+  }
+}
+
+function chackIdLsForRender(key) {
+  let data = storage.get(key);
+
+  if (!data) {
+    return false;
+  }
+
+  if (!findItemById(data, data.id)) {
+    refs.ulGallery.innerHTML = createMarkupLs(data);
+  }
+}

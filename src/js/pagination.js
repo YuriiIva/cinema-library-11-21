@@ -2,6 +2,30 @@ import refs from './refs';
 
 const createPagination = (currentPage, totalPages) => {
   renderPagination(currentPage, totalPages);
+
+  setActiveItem(currentPage);
+
+  // refs.paginationWrapper.addEventListener('click', e => {
+  //   if (e.currentTarget === e.target) {
+  //     return;
+  //   }
+
+  //   const item = e.target;
+
+  //   if (item.dataset.info === 'leftArrow') {
+  //     if (currentPage > 1) {
+  //       currentPage -= 1;
+  //       return;
+  //     }
+  //   }
+
+  //   if (item.dataset.info === 'rightArrow') {
+  //     if (currentPage < totalPages) {
+  //       currentPage += 1;
+  //       return;
+  //     }
+  //   }
+  // });
 };
 
 const renderPagination = (currentPage, totalPages) => {
@@ -64,4 +88,30 @@ const renderEndPagination = (currentPage, totalPages) => {
   <li class="pagination-list__item pagination-list__item--num" data-info='${totalPages}'>${totalPages}</li>`;
 };
 
-createPagination(500, 1000);
+const setActiveItem = currentPage => {
+  const items = refs.paginationList.children;
+
+  const active = [...items].find(item => item.classList.contains('active'));
+  if (active) {
+    active.classList.remove('current');
+  }
+
+  const item = [...items].find(item => Number(item.dataset.info) === currentPage);
+  if (item) {
+    item.classList.add('current');
+  }
+};
+
+// refs.paginationWrapper.addEventListener('click', e => {
+//   if (e.currentTarget === e.target) {
+//     console.log('nope');
+//     return;
+//   }
+
+//   const item = e.target;
+//   console.log(item);
+// });
+
+// createPagination(500, 1000);
+
+export { createPagination };

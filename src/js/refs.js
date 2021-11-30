@@ -22,4 +22,5 @@ export default {
 
   paginationList: document.querySelector('.pagination-list'),
   paginationMobileList: document.querySelector('.pagination-mobile-list'),
+  paginationWrapper: document.querySelector('.pagination-wrapper'),
 };
