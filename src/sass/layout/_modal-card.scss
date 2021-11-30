@@ -18,8 +18,8 @@ body.show-modal .backdrop {
   pointer-events: none;
 
   background-color: rgba(0, 0, 0, 0.4);
-  @media screen and (max-width: 480px) {
-  }
+
+  transition: opacity 500ms ease-in-out;
 }
 
 .no-scroll {
