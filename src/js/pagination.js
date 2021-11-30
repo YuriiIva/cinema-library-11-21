@@ -2,6 +2,8 @@ import refs from './refs';
 
 const createPagination = (currentPage, totalPages) => {
   renderPagination(currentPage, totalPages);
+
+  setActiveItem(currentPage);
 };
 
 const renderPagination = (currentPage, totalPages) => {
@@ -62,6 +64,20 @@ const renderEndPagination = (currentPage, totalPages) => {
 
   return `<li class="pagination-list__item pagination-list__item--dotted" data-info='dots'>...</li>
   <li class="pagination-list__item pagination-list__item--num" data-info='${totalPages}'>${totalPages}</li>`;
+};
+
+const setActiveItem = currentPage => {
+  const items = refs.paginationList.children;
+
+  const active = [...items].find(item => item.classList.contains('active'));
+  if (active) {
+    active.classList.remove('current');
+  }
+
+  const item = [...items].find(item => Number(item.dataset.info) === currentPage);
+  if (item) {
+    item.classList.add('current');
+  }
 };
 
 createPagination(500, 1000);
