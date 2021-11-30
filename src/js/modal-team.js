@@ -2,12 +2,14 @@ import teamOfList from './data-team';
 // import { teamCardTpl } from './render-markup.js';
 // import teamCardTpl from '../templates/modal-team.hbs';
 import * as basicLightbox from 'basiclightbox';
+// import basiclightbox from 'basiclightbox';
 import '../../node_modules/basiclightbox/dist/basicLightbox.min.css';
+import dataTeam from './data-team';
 
 const refs = {
-    teamBtn: document.querySelector('.page-footer__action-btn'),  
-    teamList: document.querySelector('.team-list'),
-    lightboxBtn: document.querySelector('.lightbox-button'),
+  teamBtn: document.querySelector('.page-footer__action-btn'),
+  teamList: document.querySelector('.team-list'),
+  lightboxBtn: document.querySelector('.lightbox-button'),
 };
 
 const modal = basicLightbox.create(document.querySelector('.lightbox'), {
@@ -21,23 +23,11 @@ const modal = basicLightbox.create(document.querySelector('.lightbox'), {
   },
 });
 
-refs.teamBtn.addEventListener('click', modal.show);
-markupTeamCards(teamOfList);
-refs.lightboxBtn.addEventListener('click', modal.close);
-
-function markupTeamCards(data) {
-  refs.teamList.insertAdjacentHTML('beforeend', teamCardTpl(data));
-}
-
-function onKeyPressEsc(e) {
-  if (e.code === 'Escape') {
-    modal.close();
-  }
-}
-
-
-function teamCardTpl({ git, photo, name, position }) {
-  return `
+const teamCardTpl = dataTeam => {
+  return dataTeam
+    .map(
+      ({ git, photo, name, position }) =>
+        `
 <li class="team-item">
     <a href="${git}" class="team-link">
         <img class="team-img" src="${photo}" alt="${name}" width="100">
@@ -46,5 +36,24 @@ function teamCardTpl({ git, photo, name, position }) {
         <p class="team-name">${name}</p>
         <p class="team-position">${position}</p>
     </div>
-</li> `
+</li> `,
+    )
+    .join('');
+};
+
+const markupTeamCards = data => {
+  const markup = teamCardTpl(data);
+  refs.teamList.innerHTML = markup;
+};
+
+refs.teamBtn.addEventListener('click', modal.show);
+console.log('markupTeamCards', markupTeamCards(teamOfList));
+// console.log('teamOfList', teamOfList);
+
+refs.lightboxBtn.addEventListener('click', modal.close);
+
+function onKeyPressEsc(e) {
+  if (e.code === 'Escape') {
+    modal.close();
+  }
 }
