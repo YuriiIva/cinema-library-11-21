@@ -9,6 +9,7 @@ import {
 import { getMovie } from './servises/api.js';
 import { createMarkupInfoModal, createMarkupLs } from './render-markup.js';
 import storage from './servises/localStorage.js';
+import { resetGallery } from './switch-page.js';
 
 function createObj(data) {
   const { original_title, genres, vote_average, release_date, poster_path, id } = data;
@@ -128,11 +129,20 @@ function renderLsMarkupListByActive() {
 
   if (refs.watchedBtn.classList.contains('hero__btn-active')) {
     chackIdLsForRender(WEB_LOCAL_WATCHED);
+    let data = storage.get(WEB_LOCAL_WATCHED); 
+    if (data.length < 1) {
+      refs.noFilm.classList.remove("vusually-hidden");
+    }
   }
 
   if (refs.queueBtn.classList.contains('hero__btn-active')) {
     chackIdLsForRender(WEB_LOCAL_QUEUE);
+    let data = storage.get(WEB_LOCAL_QUEUE); 
+    if (data.length < 1) {
+      refs.noFilmQ.classList.remove("vusually-hidden");
+    }
   }
+
 }
 
 function chackIdLsForRender(key) {
@@ -143,6 +153,7 @@ function chackIdLsForRender(key) {
   }
 
   if (!findItemById(data, data.id)) {
+    resetGallery();
     refs.ulGallery.innerHTML = createMarkupLs(data);
   }
 }
