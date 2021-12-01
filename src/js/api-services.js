@@ -8,10 +8,11 @@ const BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY1 = '1f37c9d1204318c8a24c8b0a5ae713a0';
 const API_KEY2 = 'f9b3a8f6c2c6ac6ea45f1e88181f9357';
 let currentPage = 1;
+let currentSearchPage = 1;
 
 const searchFilm = nameFilm => {
   return fetch(
-    `${BASE_URL}/search/movie?api_key=${API_KEY1}&query=${nameFilm}&id&genres&backdrop_path&original_title&homepage&release_date&vote_average&vote_count&overview&popularity`,
+    `${BASE_URL}/search/movie?api_key=${API_KEY1}&query=${nameFilm}&id&genres&backdrop_path&original_title&homepage&release_date&vote_average&vote_count&overview&popularity&page=${currentSearchPage}`,
   ).then(response => {
     if (!response.ok) {
       return Promise.reject(new Error(error));
@@ -43,28 +44,26 @@ const createFetch = () => {
 
         const item = e.target;
 
-        if (item.dataset.info === 'leftArrow') {
-          if (page > 1) {
-            page -= 1;
-            createPagination(page, total_pages);
-            return;
-          }
+        if (item.dataset.info === 'leftArrow' && page > 1) {
+          page -= 1;
+          currentPage = page;
+          createFetch();
+          return;
         }
 
-        if (item.dataset.info === 'rightArrow') {
-          if (page < total_pages) {
-            page += 1;
-            createPagination(page, total_pages);
-            return;
-          }
+        if (item.dataset.info === 'rightArrow' && page < total_pages) {
+          page += 1;
+          currentPage = page;
+          createFetch();
+          return;
         }
 
         if (Number(e.target.dataset.info)) {
           const targetPage = Number(e.target.dataset.info);
           page = targetPage;
           currentPage = targetPage;
-          // createPagination(page, total_pages);
           createFetch();
+          return;
         }
       });
     })
@@ -98,45 +97,45 @@ const getFilm = () => {
       if (!data.results.length) {
         const nameNoSearch = 'Search result not successful. Enter the correct movie name and ';
         refs.noSearchName.innerHTML = nameNoSearch;
-      } else {
-        renderFotos(data.results);
+        return;
       }
 
-      const { page, total_pages } = data;
+      renderFotos(data.results);
 
-      createPagination(page, total_pages);
+      // let { page, total_pages } = data;
 
-      refs.paginationWrapper.addEventListener('click', e => {
-        if (e.currentTarget === e.target) {
-          return;
-        }
+      // createPagination(page, total_pages);
 
-        const item = e.target;
+      // refs.paginationWrapper.addEventListener('click', e => {
+      //   if (e.currentTarget === e.target) {
+      //     return;
+      //   }
 
-        if (item.dataset.info === 'leftArrow') {
-          if (page > 1) {
-            page -= 1;
-            createPagination(page, total_pages);
-            return;
-          }
-        }
+      //   const item = e.target;
 
-        if (item.dataset.info === 'rightArrow') {
-          if (page < total_pages) {
-            page += 1;
-            createPagination(page, total_pages);
-            return;
-          }
-        }
+      //   if (item.dataset.info === 'leftArrow' && page > 1) {
+      //     page -= 1;
+      //     currentSearchPage = page;
+      //     getFilm();
+      //     return;
+      //   }
 
-        if (Number(e.target.dataset.info)) {
-          const targetPage = Number(e.target.dataset.info);
-          page = targetPage;
-          currentPage = targetPage;
-          // createPagination(page, total_pages);
-          searchFilm();
-        }
-      });
+      //   if (item.dataset.info === 'rightArrow' && page < total_pages) {
+      //     page += 1;
+      //     currentSearchPage = page;
+      //     getFilm();
+      //     return;
+      //   }
+
+      //   if (Number(e.target.dataset.info)) {
+      //     const targetPage = Number(e.target.dataset.info);
+      //     page = targetPage;
+      //     currentSearchPage = targetPage;
+      //     console.log('current 1', currentSearchPage);
+      //     getFilm();
+      //     return;
+      //   }
+      // });
     })
 
     .catch(error => {
