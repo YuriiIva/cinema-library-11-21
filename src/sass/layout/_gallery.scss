@@ -1,14 +1,12 @@
 main {
   display: flex;
   flex-direction: column;
-  background-color: #FFFFFF;;
-
+  background-color: #ffffff;
 }
 .gallery {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding-top: 20px;
   gap: 20px;
 
   @media screen and (min-width: 1024px) {
@@ -45,7 +43,11 @@ main {
   }
 }
 .gallery__section {
-  padding-top: 50px;
+  @media screen and (max-width: 767px) {
+    padding-top: 20px;
+  }
+
+  padding-top: 60px;
   padding-bottom: 50px;
 }
 
@@ -53,7 +55,6 @@ $img-height: 398px;
 $img-width-mobile: 280px;
 $img-width-tablet: 294px;
 $img-width-desktop: 274px;
-
 
 .gallery__item {
   cursor: pointer;
@@ -66,14 +67,25 @@ $img-width-desktop: 274px;
   @media screen and (min-width: 1024px) {
     width: $img-width-desktop;
   }
+
+  transition: transform 300ms ease-out, box-shadow 300ms ease-out, border-radius 300ms ease-out;
+
+  &:hover {
+    transform: scale3d(1.05, 1.05, 1.05);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.191), 0px 3px 5px rgba(0, 0, 0, 0.14),
+      0px 5px 7px rgba(98, 59, 14, 0.2);
+    border-radius: 0 0 5px 5px;
+  }
 }
-.gallery__img {
+.gallery__wrapper-img {
   overflow: hidden;
   border-radius: 5px;
+}
+.gallery__img {
   width: 100%;
 }
 .galery__info {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 12px;
   font-weight: 500;
   line-height: calc(16 / 12);
@@ -102,5 +114,3 @@ $img-width-desktop: 274px;
   background-color: #ff6b01;
   color: #ffffff;
 }
-
-
