@@ -1,8 +1,5 @@
 import teamOfList from './data-team';
-// import { teamCardTpl } from './render-markup.js';
-// import teamCardTpl from '../templates/modal-team.hbs';
 import * as basicLightbox from 'basiclightbox';
-// import basiclightbox from 'basiclightbox';
 import '../../node_modules/basiclightbox/dist/basicLightbox.min.css';
 import dataTeam from './data-team';
 
@@ -29,9 +26,8 @@ const teamCardTpl = dataTeam => {
       ({ git, photo, name, position }) =>
         `
 <li class="team-item">
-    <a href="${git}" class="team-link">
-        <img class="team-img" src="${photo}" alt="${name}" width="100">
-    </a>
+      <img class="team-img" src="${photo}" alt="${name}" width="100">
+      <a href="${git}" class="team-link"></a>
     <div class="team-desc-container">
         <p class="team-name">${name}</p>
         <p class="team-position">${position}</p>

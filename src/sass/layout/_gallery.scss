@@ -1,21 +1,50 @@
 main {
   display: flex;
   flex-direction: column;
-  background-color: #e5e5e5;
-}
-.gallery{
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: center;
-   padding-top: 20px;
-   gap: 20px;
+  background-color: #FFFFFF;;
 
-    @media screen and (min-width: 1024px) {
-      justify-content: start;
-      gap: 30px;
-   }  
 }
-.gallery__section{
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 20px;
+  gap: 20px;
+
+  @media screen and (min-width: 1024px) {
+    justify-content: start;
+    gap: 30px;
+  }
+
+  &__nofound {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__nofoundimg {
+    width: 70%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+  &__nofoundtext {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+
+  &__nofoundbtn {
+    cursor: pointer;
+    border-radius: 5px;
+    text-transform: uppercase;
+    padding: 14px 38px 12px 38px;
+    border: 1px solid var(--accent-color);
+    background-color: var(--accent-color);
+    color: var(--white-color);
+  }
+}
+.gallery__section {
   padding-top: 50px;
   padding-bottom: 50px;
 }
@@ -25,9 +54,10 @@ $img-width-mobile: 280px;
 $img-width-tablet: 294px;
 $img-width-desktop: 274px;
 
-.gallery__item {
-  width: $img-width-mobile;
 
+.gallery__item {
+  cursor: pointer;
+  width: $img-width-mobile;
 
   @media screen and (min-width: 768px) {
     width: $img-width-tablet;
@@ -36,14 +66,14 @@ $img-width-desktop: 274px;
   @media screen and (min-width: 1024px) {
     width: $img-width-desktop;
   }
-} 
-.gallery__img{
-    overflow: hidden;
-    border-radius: 5px;
+}
+.gallery__img {
+  overflow: hidden;
+  border-radius: 5px;
   width: 100%;
 }
 .galery__info {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 12px;
   font-weight: 500;
   line-height: calc(16 / 12);
@@ -53,10 +83,10 @@ $img-width-desktop: 274px;
   text-transform: uppercase;
 }
 
-.gallery__info-name{
-   margin-top: 10px;
-   color: #000000;
-   text-transform: uppercase;
+.gallery__info-name {
+  margin-top: 10px;
+  color: #000000;
+  text-transform: uppercase;
 }
 .gallery__information {
   margin: 0px 10px 0px 0px;
@@ -72,4 +102,5 @@ $img-width-desktop: 274px;
   background-color: #ff6b01;
   color: #ffffff;
 }
+
 
