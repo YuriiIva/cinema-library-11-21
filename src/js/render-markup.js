@@ -1,5 +1,5 @@
 import storage from './servises/localStorage.js';
-import defoltimgSrc from '../img/default-foto/filmoteka.jpg';
+import defoltImgSrc from '../img/default-foto/filmoteka.jpg';
 import { getMovieById } from './movieGenres';
 
 import {
@@ -25,7 +25,7 @@ const makeLinkPic = path => {
   if (path) {
     return `${BASE_URL_IMG + FILE_SIZE + path}`;
   } else {
-    return defoltimgSrc;
+    return defoltImgSrc;
   }
 };
 
