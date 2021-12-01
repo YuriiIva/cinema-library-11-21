@@ -35,6 +35,7 @@ function createMarkupInfoModal({
         <img class="modal-info__img" src="${
           BASE_URL_IMG + FILE_SIZE + poster_path
         }" alt="${title}" />
+        <button class="btn__trailer--hidden" type="button" data-trailer="trailer"></button>
       </div>
       <div class="wrapper-info">
         <h3 class="modal-info__title">${original_title}</h3>

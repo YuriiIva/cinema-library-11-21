@@ -1,3 +1,5 @@
+import * as basicLightbox from 'basiclightbox';
+import 'basiclightbox/dist/basicLightbox.min.css';
 import refs from './refs.js';
 
 import {
@@ -10,6 +12,8 @@ import { getMovie } from './servises/api.js';
 import { createMarkupInfoModal, createMarkupLs } from './render-markup.js';
 import storage from './servises/localStorage.js';
 import { resetGallery } from './switch-page.js';
+
+let instance = null;
 
 function createObj(data) {
   const { original_title, genres, vote_average, release_date, poster_path, id } = data;
@@ -34,7 +38,9 @@ function onClickWorkWithData(e) {
   const btn = e.target;
 
   const objData = JSON.parse(e.currentTarget.dataset.data);
+  const key = JSON.parse(e.currentTarget.dataset.inftrailer);
 
+  console.log('🚀 ~ key', key);
   if (btn.dataset.add === 'watched') {
     workWithLocalStor(WEB_LOCAL_WATCHED, btn, objData, objData.id);
     return;
@@ -43,6 +49,10 @@ function onClickWorkWithData(e) {
   if (btn.dataset.add === 'queue') {
     workWithLocalStor(WEB_LOCAL_QUEUE, btn, objData, objData.id);
     return;
+  }
+
+  if (btn.dataset.trailer) {
+    showModalTrailer(key);
   }
 }
 
@@ -58,6 +68,14 @@ function onShowModalWithInfoMovie(e) {
     .then(movie => {
       renderMarkupInfoModal(movie);
       refs.modalInfo.dataset.data = JSON.stringify(createObj(movie));
+      const obj = createDataTrailer(movie);
+
+      if (!obj) return false;
+
+      document
+        .querySelector('[data-trailer="trailer"]')
+        .classList.replace('btn__trailer--hidden', 'modal-info__btn-trailer');
+      refs.modalInfo.dataset.inftrailer = JSON.stringify(obj);
     })
     .catch(console.log);
 }
@@ -86,6 +104,7 @@ function chechedText(btn, key, boolean) {
     btn.textContent = boolean ? 'add to Watched' : 'remove from Watched';
     return false;
   }
+
   if (key === WEB_LOCAL_QUEUE) {
     btn.textContent = boolean ? 'add to queue' : 'remove from queue';
     return false;
@@ -115,14 +134,20 @@ function onModalClose() {
 window.addEventListener('keydown', onEscKeyDown);
 
 function onEscKeyDown(e) {
-  console.log(e);
   if (e.code === 'Escape') {
+    if (basicLightbox.visible()) {
+      instance.close();
+      return false;
+    }
     onModalClose();
   }
 }
 
-const preparationGenres = array => array.map(({ name }) => name).join(', ');
-export { findItemById, preparationGenres };
+const preparationGenres = array =>
+  array
+    .map(({ name }) => name)
+    .slice(0, 2)
+    .join(', ');
 
 function renderLsMarkupListByActive() {
   if (refs.heroLib.classList.contains('vusually-hidden')) return false;
@@ -157,3 +182,27 @@ function chackIdLsForRender(key) {
     refs.ulGallery.innerHTML = createMarkupLs(data);
   }
 }
+
+function createDataTrailer({ videos }) {
+  const obj = videos.results
+    .filter(
+      ({ site, name, type }) =>
+        (site === 'YouTube' && type === 'Trailer' && name === 'Official Trailer') ||
+        (site === 'YouTube' && type === 'Trailer'),
+    )
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  return obj[0];
+}
+
+function showModalTrailer(obj) {
+  if (!obj) return false;
+
+  instance = basicLightbox.create(`
+    <iframe src="https://www.youtube.com/embed/${obj.key}" width="560" height="315" frameborder="0"></iframe>
+`);
+
+  instance.show();
+}
+
+export { findItemById, preparationGenres };
