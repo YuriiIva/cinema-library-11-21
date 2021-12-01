@@ -72,13 +72,15 @@ function createMarkupInfoModal({
 }
 
 const createMarkup = data => {
-  console.log(data);
   return data
     .map(({ poster_path, original_title, genre_ids, release_date, id }) => {
       const genresId = genre_ids.length <= 2 ? genre_ids : genre_ids.slice(0, 2);
       const genres = genresId.map(id => getMovieById(id)).join(', ');
       const date = new Date(release_date).getFullYear();
-      const url = poster_path ? `${BASE_URL_IMG + FILE_SIZE}${poster_path}` : '';
+      console.log('poster_path', poster_path);
+      const url = poster_path
+        ? `${BASE_URL_IMG + FILE_SIZE}${poster_path}`
+        : '../img/default-foto/Filmoteka.jpg';
       return `
 <li data-id="${id}" class="gallery__item">
 
