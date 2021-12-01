@@ -36,4 +36,9 @@ const upClick = function upClick() {
   });
 };
 
+// preloader
+window.onload = funсtion = () => {
+  let preloader = document.getElementById("preloader");
+  preloader.style.display = "none";
+};
 
