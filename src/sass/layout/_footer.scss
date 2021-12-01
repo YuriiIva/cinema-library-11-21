@@ -27,6 +27,15 @@
   &__heart {
     display: flex;
     margin: 0 10px 0 10px;
+    animation: heartbeating 2s infinite;
+  }
+  @keyframes heartbeating {
+    0% {
+      transform: scale(1);
+    }
+    40% {
+      transform: scale(1.5);
+    }
   }
 }
 .team {

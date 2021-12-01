@@ -1,30 +1,56 @@
-// .header {
-//   height: 230px;
-//   background-image: url(../img/bg_library_x1.jpg);
-//   @media (min-device-pixel-ratio: 2),
-//     (min-resolution: 192dpi),
-//     (min-resolution: 2dppx) {
-//     background-image: url(../img/bg_library_x2.jpg);
-//   }
-//   object-fit: cover;
-// }
-
 .hero1 {
   margin: 0 auto;
-  height: 230px;
+  padding-bottom: 97px;
+  max-width: 480px;
+  max-height: 230px;
+  width: 100%;
+  height: 100%;
 
+  // BACKGROUND
   background-repeat: no-repeat;
-  background: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(../img/desktop-1x.jpg);
+  background-size: cover;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    url(../img/foto-hero1/mob-1x.jpg);
+  @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(../img/foto-hero1/mob-2x.jpg);
+  }
+  @media screen and (min-width: '768px') {
+    max-width: 768px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(../img/foto-hero1/tab-1x.jpg);
+    @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+        url(../img/foto-hero1/tab-2x.jpg);
+    }
+  }
+  @media screen and (min-width: '1024px') {
+    max-width: 1024px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(../img/desktop-1x.jpg);
+    @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+        url(../img/foto-hero1/desktop-2x.jpg);
+    }
+  }
 }
+
 .hero1-search {
-  //   position: relative;
-  padding-top: 113px;
-  margin: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 336px;
+
+  padding-top: 113px;
+
+  margin: auto;
+  width: 280px;
+
   border-bottom: 0.5px solid #ffffff;
+
+  @media screen and (min-width: '768px') {
+    max-width: 768px;
+    width: 336px;
+  }
 }
 
 .hero1-input {
@@ -41,14 +67,16 @@
   border: none;
   width: 24px;
   height: 24px;
+  cursor: pointer;
 }
 .hero1-no-search-name {
-  margin-top: 22px;
-  font-size: 14px;
-  line-height: calc(16 / 14);
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  text-align: left;
+  margin: 22px 20px 43px;
+
+  font-size: 14px;
+  line-height: calc(16 / 14);
   color: #ff001b;
 }
