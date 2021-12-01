@@ -3,7 +3,11 @@ import Notiflix from 'notiflix';
 import refs from './refs';
 import { createMarkup, createMarkupLs } from './render-markup';
 import { createPagination } from './pagination';
+
+import { resetGallery } from "./switch-page";
+
 import verification from './modal18';
+
 
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY1 = '1f37c9d1204318c8a24c8b0a5ae713a0';
@@ -97,11 +101,14 @@ const getFilm = () => {
   searchFilm(inputName)
     .then(data => {
       if (!data.results.length) {
+        resetGallery();
         const nameNoSearch = 'Search result not successful. Enter the correct movie name and ';
         refs.noSearchName.innerHTML = nameNoSearch;
+        refs.failImg.classList.remove('vusually-hidden');
         return;
       }
 
+      refs.failImg.classList.add('vusually-hidden');
       renderFotos(data.results);
 
       // let { page, total_pages } = data;

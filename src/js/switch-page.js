@@ -18,12 +18,7 @@ function switchToLibrary(e) {
   refs.queueBtn.classList.remove("hero__btn-active");
   refs.watchedBtn.classList.add("hero__btn-active");
 
-  resetGallery();
   onWatchedMarkupLs();
-  
-  if (!refs.ulGallery.length) {
-    refs.noFilm.classList.remove("vusually-hidden");
-  }
 }
 
 // Go Home
@@ -45,6 +40,7 @@ function switchToHome(e) {
 
 refs.libNav.addEventListener("click", switchToLibrary);
 refs.homeNav.addEventListener("click", switchToHome);
-refs.noFoundBtn.addEventListener('click', switchToHome)
+refs.noFoundBtn.addEventListener('click', switchToHome);
+refs.noFoundBtnQ.addEventListener('click', switchToHome);
 
 export { resetGallery };
