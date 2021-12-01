@@ -11,3 +11,4 @@ import './js/pagination';
 import "./js/switch-page";
 // SWitch watched/queue list
 import "./js/switch-list";
+import "./js/up-to-top";
