@@ -24,4 +24,7 @@ export default {
   paginationList: document.querySelector('.pagination-list'),
   paginationMobileList: document.querySelector('.pagination-mobile-list'),
   paginationWrapper: document.querySelector('.pagination-wrapper'),
+  btn18: document.querySelector('.btn18'),
+  div: document.querySelector('.in-active'),
+  modal18: document.querySelector('.modal18'),
 };

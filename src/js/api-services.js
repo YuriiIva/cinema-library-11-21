@@ -3,7 +3,11 @@ import Notiflix from 'notiflix';
 import refs from './refs';
 import { createMarkup, createMarkupLs } from './render-markup';
 import { createPagination } from './pagination';
+
 import { resetGallery } from "./switch-page";
+
+import verification from './modal18';
+
 
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY1 = '1f37c9d1204318c8a24c8b0a5ae713a0';
@@ -78,6 +82,7 @@ const renderFotos = results => {
 };
 
 createFetch();
+// verification();
 
 const onSearchFilm = e => {
   e.preventDefault();
