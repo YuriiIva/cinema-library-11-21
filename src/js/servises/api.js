@@ -1,7 +1,7 @@
 import { BASE_URL, API_KEY } from './constants.js';
 
 function getMovie(id) {
-  const url = `${BASE_URL}/${id}?api_key=${API_KEY}`;
+  const url = `${BASE_URL}/${id}?api_key=${API_KEY}&append_to_response=videos`;
   return fetch(url).then(response =>
     response.status === 404
       ? Promise.reject(new Error('The resource you requested could not be found.'))

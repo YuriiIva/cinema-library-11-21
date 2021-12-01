@@ -88,11 +88,51 @@ body.show-modal .backdrop {
 }
 
 .wrapper-poster {
+  position: relative;
+
+  @media screen and (max-width: 767px) {
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media screen and (min-width: 440px) {
+    width: 320px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 264px;
+    height: 374px;
+  }
+
   @media screen and (min-width: 1024px) {
     border-radius: 5px;
     overflow: hidden;
     min-width: 396px;
     height: 477px;
+  }
+}
+
+.btn__trailer--hidden {
+  display: none;
+}
+
+.modal-info__btn-trailer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: transparent;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background 250ms ease-out;
+  &:hover,
+  &:focus {
+    background: rgba(0, 0, 0, 0.4) url('../img/play.png') no-repeat center;
   }
 }
 
