@@ -31,10 +31,12 @@ function createMarkupInfoModal({
   overview,
   poster_path,
 }) {
+  const url = poster_path
+    ? `${BASE_URL_IMG + FILE_SIZE + poster_path}`
+    : '../img/default-foto/filmoteka.jpg';
+  console.log('🚀 ~ url', url);
   return `<div class="wrapper-poster">
-        <img class="modal-info__img" src="${
-          BASE_URL_IMG + FILE_SIZE + poster_path
-        }" alt="${title}" />
+        <img class="modal-info__img" src=${url} alt="${title}" />
         <button class="btn__trailer--hidden" type="button" data-trailer="trailer"></button>
       </div>
       <div class="wrapper-info">
@@ -84,9 +86,7 @@ const createMarkup = data => {
         : '../img/default-foto/Filmoteka.jpg';
       return `
 <li data-id="${id}" class="gallery__item">
-
-<img src="${url}" alt="">
-
+<div class="gallery__wrapper-img"><img src="${url}" alt="${original_title}"></div>
 <div class="gallery__info">
 <p class="gallery__info-name">${original_title}</p>
 <p class="gallery__information">${genres}|${date}</p>
@@ -102,7 +102,7 @@ const createMarkupLs = dataLs => {
     .map(
       ({ poster, title, genres, releaseDate, id, average }) => `
    <li data-id="${id}" class="gallery__item">
-<img src="${poster}" alt="${title}">
+<div class="gallery__wrapper-img"><img src="${poster}" alt="${title}"></div>
 <div class="gallery__info">
 <p class="gallery__info-name">${title}</p>
 <p class="gallery__information">${genres}|${releaseDate}<span class="gallery__rating">${average}</span></p>
