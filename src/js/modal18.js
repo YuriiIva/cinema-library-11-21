@@ -14,8 +14,7 @@ const verification = e => {
   refs.div.classList.remove('in-active');
   refs.modal18.classList.add('is-hidden-btn');
 
-  console.log('Help');
 };
 
 refs.btn18.addEventListener('click', verification);
-export default verification;
+
