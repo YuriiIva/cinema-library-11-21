@@ -20,13 +20,16 @@
     background-color: var(--bg-color);
     border-radius: 5px;
     cursor: pointer;
+
+    @media screen and (max-width: 479px) {
+      display: none;
+    }
   }
 
   &-list {
     display: flex;
-    justify-content: space-between;
-    width: 400px;
-    height: 40px;
+    gap: 4px;
+    justify-content: center;
     margin-left: 5px;
     margin-right: 5px;
 
@@ -38,6 +41,11 @@
       height: 40px;
       border-radius: 5px;
       cursor: pointer;
+
+      @media screen and (max-width: 479px) {
+        width: 30px;
+        height: 30px;
+      }
 
       &:hover {
         background-color: var(--accent-color);
