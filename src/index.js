@@ -10,10 +10,9 @@ import './js/pagination';
 // Switch from home to lib and opposite
 import './js/switch-page';
 // SWitch watched/queue list
-
+import './js/user-info';
 
 import './js/modal18';
 
-import "./js/switch-list";
-import "./js/up-to-top";
-
+import './js/switch-list';
+import './js/up-to-top';
