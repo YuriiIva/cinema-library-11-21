@@ -28,4 +28,7 @@ export default {
   btn18: document.querySelector('.btn18'),
   divBlur: document.querySelector('.js-blur'),
   modal18: document.querySelector('.modal18'),
+
+  showInfo: document.querySelector('[data-info="show"]'),
+  userInfo: document.querySelector('.user-info'),
 };
