@@ -11,10 +11,17 @@ const verification = e => {
     e.currentTarget.children[0].disabled = true;
     return false;
   }
-  refs.div.classList.remove('in-active');
+  refs.divBlur.classList.remove('in-active');
   refs.modal18.classList.add('is-hidden-btn');
-
 };
 
-refs.btn18.addEventListener('click', verification);
-
+const wasMessageShown = sessionStorage.getItem('wasMessageShown');
+const showMessage = () => {
+  refs.modal18.classList.remove('is-hidden-btn');
+  refs.divBlur.classList.add('in-active');
+  refs.btn18.addEventListener('click', verification);
+  sessionStorage.setItem('wasMessageShown', true);
+};
+if (!wasMessageShown) {
+  showMessage();
+}
