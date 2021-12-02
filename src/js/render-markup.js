@@ -108,7 +108,7 @@ const createMarkupLs = dataLs => {
 <div class="gallery__wrapper-img"><img src="${poster}" alt="${title}"></div>
 <div class="gallery__info">
 <p class="gallery__info-name">${title}</p>
-<p class="gallery__information">${genres}|${releaseDate}<span class="gallery__rating">${average}</span></p>
+<p class="gallery__information">${genres} | ${releaseDate}<span class="gallery__rating">${average}</span></p>
 </div>
 </li> `,
     )
