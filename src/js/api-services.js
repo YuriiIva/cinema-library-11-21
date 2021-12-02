@@ -3,7 +3,11 @@ import refs from './refs';
 import { createMarkup, createMarkupLs } from './render-markup';
 import { createPagination } from './pagination';
 import { resetGallery } from './switch-page';
+import storage from './servises/localStorage.js';
+import { WEB_LOCAL_WATCHED, WEB_LOCAL_QUEUE } from './servises/constants.js';
 import verification from './modal18';
+import { onWatchedMarkupLs } from "./library";
+
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY1 = '1f37c9d1204318c8a24c8b0a5ae713a0';
 const API_KEY2 = 'f9b3a8f6c2c6ac6ea45f1e88181f9357';
@@ -33,6 +37,8 @@ const createFetch = () => {
     })
     .then(({ page, results, total_pages }) => {
       renderFotos(results);
+      if (total_pages <= 1) return;
+      refs.paginationList.innerHTML = '';
       createPagination(page, total_pages);
       totalPages = total_pages;
     })
@@ -76,13 +82,29 @@ const getFilm = () => {
       handError(error);
     });
 };
+
 refs.paginationWrapper.addEventListener('click', e => {
   if (e.currentTarget === e.target) {
     return;
   }
-  const fetchFunction = currentSearchName ? getFilm : createFetch;
+
   const item = e.target;
-  if (item.dataset.info === 'leftArrow' && currentPage > 1) {
+  if (refs.libNav.classList.contains("header__nav-active")) {
+    if (refs.queueBtn.classList.contains("hero__btn-active")) {
+      checkLibPagQ(item);
+      return;
+    }
+    checkLibPag(item);
+    return;
+  }
+
+  checkHomePag(item);
+});
+
+const checkHomePag = (item) => {
+  const fetchFunction = currentSearchName ? getFilm : createFetch;
+  console.log('home',item);
+if (item.dataset.info === 'leftArrow' && currentPage > 1) {
     currentPage -= 1;
     fetchFunction();
     return;
@@ -92,13 +114,60 @@ refs.paginationWrapper.addEventListener('click', e => {
     fetchFunction();
     return;
   }
-  const targetPageNumber = Number(e.target.dataset.info);
+  const targetPageNumber = Number(item.dataset.info);
   if (targetPageNumber && targetPageNumber !== currentPage) {
     currentPage = targetPageNumber;
     fetchFunction();
     return;
   }
-});
+}
+
+const checkLibPag = (item) => {
+  let data = storage.get(WEB_LOCAL_WATCHED);
+  let pages = Math.ceil(data.length / 20);
+  console.log('lib', item);
+  if (item.dataset.info === 'leftArrow' && currentPage > 1) {
+    currentPage -= 1;
+    console.log(currentPage);
+    onWatchedMarkupLs(currentPage);
+    return;
+  }
+  if (item.dataset.info === 'rightArrow' && currentPage < pages) {
+    currentPage += 1;
+    onWatchedMarkupLs(currentPage);
+    return;
+  }
+  const targetPageNumber = Number(item.dataset.info);
+  if (targetPageNumber && targetPageNumber !== currentPage) {
+    currentPage = targetPageNumber;
+    onWatchedMarkupLs(currentPage);
+    return;
+  }
+};
+
+const checkLibPagQ = (item) => {
+  let data = storage.get(WEB_LOCAL_QUEUE);
+  let pages = Math.ceil(data.length / 20);
+  console.log('libQ', item);
+  if (item.dataset.info === 'leftArrow' && currentPage > 1) {
+    currentPage -= 1;
+    console.log(currentPage);
+    onWatchedMarkupLs(currentPage);
+    return;
+  }
+  if (item.dataset.info === 'rightArrow' && currentPage < pages) {
+    currentPage += 1;
+    onWatchedMarkupLs(currentPage);
+    return;
+  }
+  const targetPageNumber = Number(item.dataset.info);
+  if (targetPageNumber && targetPageNumber !== currentPage) {
+    currentPage = targetPageNumber;
+    onWatchedMarkupLs(currentPage);
+    return;
+  }
+};
+
 const renderFotosLs = dataLs => {
   const markup = createMarkupLs(dataLs.results);
   console.log(markup);

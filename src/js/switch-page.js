@@ -18,9 +18,7 @@ function switchToLibrary(e) {
   refs.queueBtn.classList.remove("hero__btn-active");
   refs.watchedBtn.classList.add("hero__btn-active");
 
-  refs.paginationWrapper.classList.add("vusually-hidden")
-
-  onWatchedMarkupLs();
+  onWatchedMarkupLs(1);
 }
 
 // Go Home
@@ -38,7 +36,6 @@ function switchToHome(e) {
     refs.noFilm.classList.add("vusually-hidden");
     refs.noFilmQ.classList.add("vusually-hidden");
 
-  refs.paginationWrapper.classList.remove("vusually-hidden")
 }
 
 
