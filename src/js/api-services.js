@@ -37,8 +37,9 @@ const createFetch = () => {
       return response.json();
     })
     .then(({ page, results, total_pages }) => {
+      console.log('total_pages', total_pages);
       renderFotos(results);
-
+      // totalPages = Number.parseInt(data.length/ 20 + 1);
       createPagination(page, total_pages);
 
       refs.paginationWrapper.addEventListener('click', e => {
@@ -86,6 +87,7 @@ createFetch();
 const onSearchFilm = e => {
   e.preventDefault();
   refs.noSearchName.innerHTML = '';
+
   getFilm();
 };
 
@@ -110,40 +112,40 @@ const getFilm = () => {
       refs.failImg.classList.add('vusually-hidden');
       renderFotos(data.results);
 
-      // let { page, total_pages } = data;
+      let { page, total_pages } = data;
 
-      // createPagination(page, total_pages);
+      createPagination(page, total_pages);
 
-      // refs.paginationWrapper.addEventListener('click', e => {
-      //   if (e.currentTarget === e.target) {
-      //     return;
-      //   }
+      refs.paginationWrapper.addEventListener('click', e => {
+        if (e.currentTarget === e.target) {
+          return;
+        }
 
-      //   const item = e.target;
+        const item = e.target;
 
-      //   if (item.dataset.info === 'leftArrow' && page > 1) {
-      //     page -= 1;
-      //     currentSearchPage = page;
-      //     getFilm();
-      //     return;
-      //   }
+        if (item.dataset.info === 'leftArrow' && page > 1) {
+          page -= 1;
+          currentSearchPage = page;
+          onSearchFilm(e);
+          return;
+        }
 
-      //   if (item.dataset.info === 'rightArrow' && page < total_pages) {
-      //     page += 1;
-      //     currentSearchPage = page;
-      //     getFilm();
-      //     return;
-      //   }
+        if (item.dataset.info === 'rightArrow' && page < total_pages) {
+          page += 1;
+          currentSearchPage = page;
+          onSearchFilm(e);
+          return;
+        }
 
-      //   if (Number(e.target.dataset.info)) {
-      //     const targetPage = Number(e.target.dataset.info);
-      //     page = targetPage;
-      //     currentSearchPage = targetPage;
-      //     console.log('current 1', currentSearchPage);
-      //     getFilm();
-      //     return;
-      //   }
-      // });
+        if (Number(e.target.dataset.info)) {
+          const targetPage = Number(e.target.dataset.info);
+          page = targetPage;
+          currentSearchPage = targetPage;
+
+          onSearchFilm(e);
+          return;
+        }
+      });
     })
 
     .catch(error => {
