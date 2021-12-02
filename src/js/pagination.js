@@ -2,7 +2,10 @@ import refs from './refs';
 
 const createPagination = (currentPage, totalPages) => {
   let markup = '';
-
+  //   if (pages === 1) {
+  //     refs.paginationWrapper.classList.add("vusually-hidden");
+  //     return markup;
+  // }
   for (let i = 1; i <= totalPages; i++) {
       if (currentPage + 4 === i) markup += `<li class="pagination-list__item pagination-list__item--dotted" data-info='dots'>...</li>`;
       if (i === 1 || i === totalPages || (i >= currentPage - 2 && i <= currentPage + 2))

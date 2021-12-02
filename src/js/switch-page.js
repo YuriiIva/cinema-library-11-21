@@ -1,6 +1,6 @@
 import refs from "./refs.js";
 import { onWatchedMarkupLs } from "./library";
-import { createFetch } from "./api-services";
+import { createFetch, onClearInput } from "./api-services";
 
 function resetGallery() {
   refs.ulGallery.innerHTML = '';
@@ -19,6 +19,7 @@ function switchToLibrary(e) {
   refs.watchedBtn.classList.add("hero__btn-active");
 
   onWatchedMarkupLs(1);
+  refs.failImg.classList.add('vusually-hidden');
 }
 
 // Go Home
@@ -32,10 +33,11 @@ function switchToHome(e) {
 
   resetGallery();
   createFetch();
+  onClearInput();
+  refs.inputFilm.value = '';
   
-    refs.noFilm.classList.add("vusually-hidden");
-    refs.noFilmQ.classList.add("vusually-hidden");
-
+  refs.noFilm.classList.add("vusually-hidden");
+  refs.noFilmQ.classList.add("vusually-hidden");
 }
 
 

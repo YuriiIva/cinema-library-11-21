@@ -75,11 +75,16 @@ const getFilm = () => {
         const nameNoSearch = 'Search result not successful. Enter the correct movie name ';
         refs.noSearchName.innerHTML = nameNoSearch;
         refs.failImg.classList.remove('vusually-hidden');
-
+        refs.paginationWrapper.classList.add('vusually-hidden');
         return;
       }
       let { results, page, total_pages } = data;
       refs.failImg.classList.add('vusually-hidden');
+      refs.paginationWrapper.classList.remove('vusually-hidden');
+      if (total_pages < 2) {
+  
+        refs.paginationWrapper.classList.add("vusually-hidden");
+      }
       renderFotos(results);
       createPagination(page, total_pages);
       totalPages = total_pages;
@@ -189,4 +194,4 @@ const onClearInput = () => {
 };
 refs.form.addEventListener('submit', onSearchFilm);
 refs.inputFilm.addEventListener('click', onClearInput);
-export { createFetch };
+export { createFetch, onClearInput };
