@@ -29,6 +29,9 @@ const makeLinkPic = path => {
   }
 };
 
+const showDefInfoGenres = genres => (genres.length <= 1 ? 'No genres' : genres);
+const showDefInfoDate = date => (date ? date : 'No date');
+
 function createMarkupInfoModal({
   id,
   vote_average,
@@ -92,7 +95,7 @@ const createMarkup = data => {
 <div class="gallery__wrapper-img"><img src="${poster}" alt="${original_title}"></div>
 <div class="gallery__info">
 <p class="gallery__info-name">${original_title}</p>
-<p class="gallery__information">${genres}|${date}</p>
+<p class="gallery__information">${showDefInfoGenres(genres)} | ${showDefInfoDate(date)}</p>
 </div>
 </li>
 </ul>`;
@@ -108,7 +111,9 @@ const createMarkupLs = dataLs => {
 <div class="gallery__wrapper-img"><img src="${poster}" alt="${title}"></div>
 <div class="gallery__info">
 <p class="gallery__info-name">${title}</p>
-<p class="gallery__information">${genres}|${releaseDate}<span class="gallery__rating">${average}</span></p>
+<p class="gallery__information">${showDefInfoGenres(genres)} | ${showDefInfoDate(
+        releaseDate,
+      )}<span class="gallery__rating">${average}</span></p>
 </div>
 </li> `,
     )
