@@ -89,10 +89,10 @@ const createMarkup = data => {
       const poster = makeLinkPic(poster_path);
       return `
 <li data-id="${id}" class="gallery__item">
-<div class="gallery__wrapper-img"><img src="${poster}" alt="${original_title}"></div>
+<div class="gallery__wrapper-img"><img class="gallery__img" src="${poster}" alt="${original_title}"></div>
 <div class="gallery__info">
 <p class="gallery__info-name">${original_title}</p>
-<p class="gallery__information">${genres}|${date}</p>
+<p class="gallery__information">${genres} | ${date}</p>
 </div>
 </li>
 </ul>`;
