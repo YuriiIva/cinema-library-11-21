@@ -23,31 +23,35 @@ function createObj(data) {
   };
 }
 
-function renderMarkupInfoModal(data) {
-  refs.modalInfo.innerHTML = createMarkupInfoModal(data);
-}
+const preparationGenres = array =>
+  array
+    .map(({ name }) => name)
+    .slice(0, 2)
+    .join(', ');
 
 function onClickWorkWithData(e) {
   if (e.target.tagName !== 'BUTTON') return false;
 
   const btn = e.target;
 
-  const objData = JSON.parse(e.currentTarget.dataset.data);
-  const key = JSON.parse(e.currentTarget.dataset.inftrailer);
+  try {
+    const objData = JSON.parse(e.currentTarget.dataset.data);
+    const key = JSON.parse(e.currentTarget.dataset.inftrailer);
 
-  if (btn.dataset.add === 'watched') {
-    workWithLocalStor(WEB_LOCAL_WATCHED, btn, objData, objData.id);
-    return;
-  }
+    if (btn.dataset.add === 'watched') {
+      workWithLocalStor(WEB_LOCAL_WATCHED, btn, objData, objData.id);
+      return;
+    }
 
-  if (btn.dataset.add === 'queue') {
-    workWithLocalStor(WEB_LOCAL_QUEUE, btn, objData, objData.id);
-    return;
-  }
+    if (btn.dataset.add === 'queue') {
+      workWithLocalStor(WEB_LOCAL_QUEUE, btn, objData, objData.id);
+      return;
+    }
 
-  if (btn.dataset.trailer) {
-    showModalTrailer(key);
-  }
+    if (btn.dataset.trailer) {
+      showModalTrailer(key);
+    }
+  } catch (error) {}
 }
 
 function onShowModalWithInfoMovie(e) {
@@ -61,21 +65,27 @@ function onShowModalWithInfoMovie(e) {
   getMovie(id)
     .then(movie => {
       renderMarkupInfoModal(movie);
-      refs.modalInfo.dataset.data = JSON.stringify(createObj(movie));
-      const obj = createDataTrailer(movie);
+      try {
+        refs.modalInfo.dataset.data = JSON.stringify(createObj(movie));
+        const obj = createDataTrailer(movie);
 
-      if (!obj) return false;
+        if (!obj) return false;
 
-      document
-        .querySelector('[data-trailer="trailer"]')
-        .classList.replace('btn__trailer--hidden', 'modal-info__btn-trailer');
-      refs.modalInfo.dataset.inftrailer = JSON.stringify(obj);
+        document
+          .querySelector('[data-trailer="trailer"]')
+          .classList.replace('btn__trailer--hidden', 'modal-info__btn-trailer');
+
+        refs.modalInfo.dataset.inftrailer = JSON.stringify(obj);
+      } catch (error) {}
     })
     .catch(console.log);
 }
 
-refs.modalInfo.addEventListener('click', onClickWorkWithData);
+function renderMarkupInfoModal(data) {
+  refs.modalInfo.innerHTML = createMarkupInfoModal(data);
+}
 
+refs.modalInfo.addEventListener('click', onClickWorkWithData);
 refs.ulGallery.addEventListener('click', onShowModalWithInfoMovie);
 
 const findItemById = (array, id) => array.find(item => item.id === id);
@@ -105,9 +115,6 @@ function chechedText(btn, key, boolean) {
   }
 }
 
-refs.closeModalBtn.addEventListener('click', onModalClose);
-refs.backdrop.addEventListener('click', onBackdropClick);
-
 function onBackdropClick(event) {
   if (event.currentTarget === event.target) {
     onModalClose();
@@ -124,8 +131,6 @@ function onModalClose() {
   document.body.classList.remove('show-modal', 'no-scroll');
 }
 
-window.addEventListener('keydown', onEscKeyDown);
-
 function onEscKeyDown(e) {
   if (e.code === 'Escape') {
     if (basicLightbox.visible()) {
@@ -136,11 +141,9 @@ function onEscKeyDown(e) {
   }
 }
 
-const preparationGenres = array =>
-  array
-    .map(({ name }) => name)
-    .slice(0, 2)
-    .join(', ');
+refs.closeModalBtn.addEventListener('click', onModalClose);
+refs.backdrop.addEventListener('click', onBackdropClick);
+window.addEventListener('keydown', onEscKeyDown);
 
 function renderLsMarkupListByActive() {
   if (refs.heroLib.classList.contains('vusually-hidden')) return false;
