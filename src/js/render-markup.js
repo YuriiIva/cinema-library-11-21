@@ -1,4 +1,5 @@
 import storage from './servises/localStorage.js';
+import defoltImgSrc from '../img/default-foto/filmoteka.jpg';
 import { getMovieById } from './movieGenres';
 
 import {
@@ -20,6 +21,14 @@ const checkInfoLsQ = id => {
   return findItemById(data, id) ? 'remove from queue' : 'add to queue';
 };
 
+const makeLinkPic = path => {
+  if (path) {
+    return `${BASE_URL_IMG + FILE_SIZE + path}`;
+  } else {
+    return defoltImgSrc;
+  }
+};
+
 function createMarkupInfoModal({
   id,
   vote_average,
@@ -31,12 +40,9 @@ function createMarkupInfoModal({
   overview,
   poster_path,
 }) {
-  const url = poster_path
-    ? `${BASE_URL_IMG + FILE_SIZE + poster_path}`
-    : '../img/default-foto/filmoteka.jpg';
-  console.log('🚀 ~ url', url);
+  const poster = makeLinkPic(poster_path);
   return `<div class="wrapper-poster">
-        <img class="modal-info__img" src=${url} alt="${title}" />
+        <img class="modal-info__img" src="${poster}" alt="${title}" />
         <button class="btn__trailer--hidden" type="button" data-trailer="trailer"></button>
       </div>
       <div class="wrapper-info">
@@ -80,13 +86,10 @@ const createMarkup = data => {
       const genresId = genre_ids.length <= 2 ? genre_ids : genre_ids.slice(0, 2);
       const genres = genresId.map(id => getMovieById(id)).join(', ');
       const date = new Date(release_date).getFullYear();
-      console.log('poster_path', poster_path);
-      const url = poster_path
-        ? `${BASE_URL_IMG + FILE_SIZE}${poster_path}`
-        : '../img/default-foto/Filmoteka.jpg';
+      const poster = makeLinkPic(poster_path);
       return `
 <li data-id="${id}" class="gallery__item">
-<div class="gallery__wrapper-img"><img src="${url}" alt="${original_title}"></div>
+<div class="gallery__wrapper-img"><img src="${poster}" alt="${original_title}"></div>
 <div class="gallery__info">
 <p class="gallery__info-name">${original_title}</p>
 <p class="gallery__information">${genres}|${date}</p>
@@ -112,4 +115,4 @@ const createMarkupLs = dataLs => {
     .join('');
 };
 
-export { createMarkup, createMarkupLs, createMarkupInfoModal };
+export { createMarkup, createMarkupLs, createMarkupInfoModal, makeLinkPic };

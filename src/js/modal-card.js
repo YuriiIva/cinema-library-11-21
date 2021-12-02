@@ -2,14 +2,9 @@ import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
 import refs from './refs.js';
 
-import {
-  BASE_URL_IMG,
-  FILE_SIZE,
-  WEB_LOCAL_WATCHED,
-  WEB_LOCAL_QUEUE,
-} from './servises/constants.js';
+import { WEB_LOCAL_WATCHED, WEB_LOCAL_QUEUE } from './servises/constants.js';
 import { getMovie } from './servises/api.js';
-import { createMarkupInfoModal, createMarkupLs } from './render-markup.js';
+import { createMarkupInfoModal, createMarkupLs, makeLinkPic } from './render-markup.js';
 import storage from './servises/localStorage.js';
 import { resetGallery } from './switch-page.js';
 
@@ -21,7 +16,7 @@ function createObj(data) {
   return {
     id,
     title: original_title,
-    poster: `${BASE_URL_IMG + FILE_SIZE + poster_path}`,
+    poster: `${makeLinkPic(poster_path)}`,
     genres: `${preparationGenres(genres)}`,
     average: vote_average,
     releaseDate: new Date(release_date).getFullYear(),
@@ -40,7 +35,6 @@ function onClickWorkWithData(e) {
   const objData = JSON.parse(e.currentTarget.dataset.data);
   const key = JSON.parse(e.currentTarget.dataset.inftrailer);
 
-  console.log('🚀 ~ key', key);
   if (btn.dataset.add === 'watched') {
     workWithLocalStor(WEB_LOCAL_WATCHED, btn, objData, objData.id);
     return;
@@ -127,7 +121,6 @@ function isModalOpen() {
 
 function onModalClose() {
   renderLsMarkupListByActive();
-
   document.body.classList.remove('show-modal', 'no-scroll');
 }
 
@@ -154,20 +147,19 @@ function renderLsMarkupListByActive() {
 
   if (refs.watchedBtn.classList.contains('hero__btn-active')) {
     chackIdLsForRender(WEB_LOCAL_WATCHED);
-    let data = storage.get(WEB_LOCAL_WATCHED); 
+    let data = storage.get(WEB_LOCAL_WATCHED);
     if (data.length < 1) {
-      refs.noFilm.classList.remove("vusually-hidden");
+      refs.noFilm.classList.remove('vusually-hidden');
     }
   }
 
   if (refs.queueBtn.classList.contains('hero__btn-active')) {
     chackIdLsForRender(WEB_LOCAL_QUEUE);
-    let data = storage.get(WEB_LOCAL_QUEUE); 
+    let data = storage.get(WEB_LOCAL_QUEUE);
     if (data.length < 1) {
-      refs.noFilmQ.classList.remove("vusually-hidden");
+      refs.noFilmQ.classList.remove('vusually-hidden');
     }
   }
-
 }
 
 function chackIdLsForRender(key) {
@@ -199,7 +191,9 @@ function showModalTrailer(obj) {
   if (!obj) return false;
 
   instance = basicLightbox.create(`
-    <iframe src="https://www.youtube.com/embed/${obj.key}" width="560" height="315" frameborder="0"></iframe>
+    <div class="video-responsive">
+    <iframe src="https://www.youtube.com/embed/${obj.key}" width="auto" height="auto" frameborder="0" allowfullscreen></iframe>
+    </div>
 `);
 
   instance.show();
