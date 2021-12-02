@@ -9,6 +9,7 @@ import storage from './servises/localStorage.js';
 import { resetGallery } from './switch-page.js';
 
 let instance = null;
+let isOpenModalCard = false;
 
 function createObj(data) {
   const { original_title, genres, vote_average, release_date, poster_path, id } = data;
@@ -56,9 +57,7 @@ function onClickWorkWithData(e) {
 
 function onShowModalWithInfoMovie(e) {
   e.preventDefault();
-  if (e.target === e.currentTarget) return false;
-
-  isModalOpen();
+  if (e.target === e.currentTarget || isOpenModalCard) return false;
 
   const id = e.target.closest('li').dataset.id;
 
@@ -83,6 +82,8 @@ function onShowModalWithInfoMovie(e) {
 
 function renderMarkupInfoModal(data) {
   refs.modalInfo.innerHTML = createMarkupInfoModal(data);
+  isModalOpen();
+  isOpenModalCard = true;
 }
 
 refs.modalInfo.addEventListener('click', onClickWorkWithData);
@@ -122,13 +123,16 @@ function onBackdropClick(event) {
 }
 
 function isModalOpen() {
-  refs.modalInfo.innerHTML = '';
   document.body.classList.add('show-modal', 'no-scroll');
 }
 
 function onModalClose() {
   renderLsMarkupListByActive();
   document.body.classList.remove('show-modal', 'no-scroll');
+  setTimeout(() => {
+    refs.modalInfo.innerHTML = '';
+    isOpenModalCard = false;
+  }, 300);
 }
 
 function onEscKeyDown(e) {
