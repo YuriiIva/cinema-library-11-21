@@ -7,8 +7,8 @@ console.log('refs.btn18', refs.btn18);
 const verification = e => {
   if (e.target.tagName === 'BUTTON' && e.target.dataset.action === 'no') {
     Notiflix.Notify.failure(' Sorry! You still need to grow');
-    console.dir(e.currentTarget.children[0]);
-    e.currentTarget.children[0].disabled = true;
+    // console.dir(e.currentTarget.children[0]);
+    // e.currentTarget.children[0].disabled = true;
     return false;
   }
   refs.divBlur.classList.remove('in-active');

@@ -64,6 +64,7 @@ const getFilm = () => {
         const nameNoSearch = 'Search result not successful. Enter the correct movie name and ';
         refs.noSearchName.innerHTML = nameNoSearch;
         refs.failImg.classList.remove('vusually-hidden');
+
         return;
       }
       let { results, page, total_pages } = data;
@@ -112,7 +113,6 @@ const handError = error => {
 //   refs.inputFilm.value = '';
 // };
 const onClearInput = () => {
-  refs.inputFilm.value = '';
   refs.noSearchName.innerHTML = '';
 };
 refs.form.addEventListener('submit', onSearchFilm);

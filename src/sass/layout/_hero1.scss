@@ -53,10 +53,15 @@
   }
 }
 
+.hero1-search:hover {
+  border-bottom: 3px solid #e68f0e;
+}
+
 .hero1-input {
   outline: none;
   border: none;
   font-size: 14px;
+  letter-spacing: 0.2em;
   line-height: calc(16 / 14);
   background-color: transparent;
   color: var(--white-color);
@@ -67,6 +72,7 @@
     background-color: transparent;
   }
 }
+
 .btn-hero1 {
   background-color: transparent;
   border: none;
