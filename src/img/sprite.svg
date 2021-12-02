@@ -13,8 +13,10 @@
       <path fill="#ff6b08" style="fill:var(--color2, #ff6b08)" d="m16 31-2-3C5 21 0 16 0 10c0-5 4-9 9-9 3 0 5 1 7 4 2-3 4-4 7-4 5 0 9 4 9 9 0 6-5 11-14 18l-2 3z"/>
     </symbol>
     <symbol id="search" viewBox="0 0 32 32">
-      <path fill="none" stroke="#fff" style="stroke:var(--color3, #fff)" stroke-linejoin="round" stroke-linecap="round" stroke-width="2.7" d="M15 25a11 11 0 1 0 0-21v0a11 11 0 1 0 0 21v0zm13 3-6-6"/>
-    </symbol>
+<path fill="none" stroke="#fff" style="stroke: var(--color1, #fff)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M14.667 25.333c5.891 0 10.667-4.776 10.667-10.667s-4.776-10.667-10.667-10.667c-5.891 0-10.667 4.776-10.667 10.667s4.776 10.667 10.667 10.667z"></path>
+<path fill="none" stroke="#fff" style="stroke: var(--color1, #fff)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M28 28.001l-5.8-5.8"></path>
+</symbol>
+    
     <symbol id="close" viewBox="0 0 32 32">
       <path d="M23.733 10.304l-1.504-1.504-5.963 5.963-5.963-5.963-1.504 1.504 5.963 5.963-5.963 5.963 1.504 1.504 5.963-5.963 5.963 5.963 1.504-1.504-5.963-5.963 5.963-5.963z"></path>
     </symbol>
