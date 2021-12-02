@@ -83,6 +83,7 @@ $img-width-desktop: 274px;
 }
 .gallery__img {
   width: 100%;
+  height: 398px;
 }
 .galery__info {
   font-family: 'Roboto', sans-serif;
@@ -97,11 +98,12 @@ $img-width-desktop: 274px;
 
 .gallery__info-name {
   margin-top: 10px;
+  margin-left: 3px;
   color: #000000;
   text-transform: uppercase;
 }
 .gallery__information {
-  margin: 0px 10px 0px 0px;
+  margin: 0px 10px 5px 3px;
   color: #ff6b08;
 }
 .gallery__rating {
