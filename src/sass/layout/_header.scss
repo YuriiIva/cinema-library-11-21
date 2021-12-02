@@ -1,5 +1,6 @@
 .logo {
-  margin-right: 10px;
+  stroke: #818181;
+
   @media screen and (max-width: 480px) {
     margin-bottom: 5px;
   }
@@ -38,9 +39,16 @@
     font-size: 30px;
     line-height: calc(35 / 30);
     color: var(--white-color);
-
     display: flex;
     align-items: center;
+    transition: transform 300ms ease-out, box-shadow 300ms ease-out, border-radius 300ms ease-out;
+    &:hover {
+      transform: scale3d(1.05, 1.05, 1.05);
+      color: var(--accent-color);
+    }
+    &:hover .logo {
+      stroke: var(--accent-color);
+    }
   }
 
   &__nav {
@@ -91,6 +99,7 @@
   }
 
   &__name {
+    padding-left: 10px;
     @media screen and (max-width: 480px) {
       display: none;
     }

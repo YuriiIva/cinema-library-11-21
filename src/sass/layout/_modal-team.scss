@@ -5,19 +5,19 @@
 .lightbox-overlay {
   height: 100vh;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
+  // background-color: rgba(0, 0, 0, 0.4);
 }
 
 .team-info {
   margin: 0 auto;
-  padding: 30px 10px 30px 10px;
+  padding: 30px 20px 30px 20px;
   width: 280px;
   height: auto;
   background-color: var(--white-color);
 
   @media screen and (min-width: 768px) {
     width: 620px;
-    padding: 40px 30px 40px 30px;
+    padding: 40px 40px 40px 40px;
   }
   @media screen and (min-width: 1024px) {
     width: 880px;
@@ -30,41 +30,27 @@
   @media screen and (min-width: 768px) {
     margin-bottom: 30px;
   }
-  @media screen and (min-width: 1024px) {
-    margin-bottom: 40px;
-  }
 }
 .team-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 35px;
+  margin: 0;
   padding: 0;
-  margin: -10px;
-  @media screen and (min-width: 768px) {
-    margin: -15px;
-  }
-  @media screen and (min-width: 1024px) {
-    margin: -25px;
-  }
 }
 .team-item {
   position: relative;
-  width: 210px;
+  width: 240px;
   height: auto;
-  margin: 10px 0 10px 0;
   list-style-type: none;
   border-radius: 5px;
+  transition-duration: 1000ms;
   &:hover {
-    transform: scale(1.2);
+    transform: scale(1.15);
     transition-duration: 1000ms;
   }
   box-shadow: 5px 5px 35px 10px rgba(233, 152, 31, 0.3);
-  @media screen and (min-width: 768px) {
-    margin: 15px;
-  }
-  @media screen and (min-width: 1024px) {
-    margin: 25px;
-  }
 }
 .team-link {
   position: relative;
@@ -109,7 +95,7 @@
 .lightbox-button {
   position: absolute;
   top: 10px;
-  right: 20px;
+  right: 7px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -121,8 +107,13 @@
 
   background-color: transparent;
   cursor: pointer;
+  transition-duration: 600ms;
   &:hover {
     transform: scale(1.3);
     fill: var(--accent-color);
+    transition-duration: 600ms;
+  }
+  @media screen and (min-width: 768px) {
+    right: 20px;
   }
 }
