@@ -18,6 +18,7 @@ function onWatchedMarkupLs(page) {
     return;
   };
 
+
   const start = (page - 1) * 20;
   const dataLs = data.slice(start, start + 20);
 
@@ -28,8 +29,8 @@ function onWatchedMarkupLs(page) {
   refs.noFilm.classList.add("vusually-hidden");
 
   createPagination(page, pages);
-    refs.paginationWrapper.classList.remove("vusually-hidden");
-
+  refs.paginationWrapper.classList.remove("vusually-hidden");
+  if (pages < 2) return refs.paginationWrapper.classList.add("vusually-hidden");
 }
 
 function onQueueMarkupLs(page) {
@@ -45,6 +46,7 @@ function onQueueMarkupLs(page) {
     console.log(data);
     return;
   };
+  
 
   const start = (page - 1) * 20;
   const dataLs = data.slice(start, start + 20);
@@ -55,7 +57,8 @@ function onQueueMarkupLs(page) {
   refs.noFilmQ.classList.add("vusually-hidden");
 
   createPagination(page, pages);
-    refs.paginationWrapper.classList.remove("vusually-hidden");
+  refs.paginationWrapper.classList.remove("vusually-hidden");
+  if (pages < 2) return refs.paginationWrapper.classList.add("vusually-hidden");
 }
 
 export { onWatchedMarkupLs, onQueueMarkupLs };
