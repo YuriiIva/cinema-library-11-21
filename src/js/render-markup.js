@@ -1,5 +1,5 @@
 import storage from './servises/localStorage.js';
-import defoltImgSrc from '../img/default-foto/filmoteka.jpg';
+import defoltImgSrc from '../img/default foto/filmoteka.jpg';
 import { getMovieById } from './movieGenres';
 
 import {
