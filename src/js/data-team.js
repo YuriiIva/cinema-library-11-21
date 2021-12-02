@@ -13,7 +13,7 @@ export default [
     git: 'https://github.com/YuriiIva',
   },
   {
-    name: 'Mariya Gutsul',
+    name: 'Mariia Gutsul',
     photo: photoMariya,
     position: 'Scrum Master',
     git: 'https://github.com/Mariya78Gutsul',
@@ -31,7 +31,7 @@ export default [
     git: 'https://github.com/HeheTi',
   },
   {
-    name: 'Maxim Parunov',
+    name: 'Maksym Parunov',
     photo: photoMaxim,
     position: 'Developer',
     git: 'https://github.com/MaksVibe',
