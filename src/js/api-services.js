@@ -39,7 +39,6 @@ const createFetch = () => {
     })
     .then(({ page, results, total_pages, adult }) => {
       renderFotos(results);
-
       if (total_pages <= 1) return;
       refs.paginationList.innerHTML = '';
       createPagination(page, total_pages);
@@ -82,8 +81,7 @@ const getFilm = () => {
       refs.failImg.classList.add('vusually-hidden');
       refs.paginationWrapper.classList.remove('vusually-hidden');
       if (total_pages < 2) {
-  
-        refs.paginationWrapper.classList.add("vusually-hidden");
+        refs.paginationWrapper.classList.add('vusually-hidden');
       }
       renderFotos(results);
       createPagination(page, total_pages);

@@ -4,7 +4,7 @@ import refs from './refs';
 
 const verification = e => {
   if (e.target.tagName === 'BUTTON' && e.target.dataset.action === 'no') {
-    Notiflix.Notify.success(' Sorry! You still need to grow up');
+    Notiflix.Notify.failure(' Sorry! You still need to grow up');
     return false;
   }
   refs.divBlur.classList.remove('in-active');

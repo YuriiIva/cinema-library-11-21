@@ -2,16 +2,18 @@ import refs from './refs';
 
 const createPagination = (currentPage, totalPages) => {
   let markup = '';
-  //   if (pages === 1) {
-  //     refs.paginationWrapper.classList.add("vusually-hidden");
-  //     return markup;
-  // }
+  refs.paginationWrapper.classList.remove('vusually-hidden');
+  if (totalPages < 2) return refs.paginationWrapper.classList.add('vusually-hidden');
   for (let i = 1; i <= totalPages; i++) {
-      if (currentPage + 4 === i) markup += `<li class="pagination-list__item pagination-list__item--dotted" data-info='dots'>...</li>`;
-      if (i === 1 || i === totalPages || (i >= currentPage - 2 && i <= currentPage + 2))
-        markup += `<li class="${(currentPage === i ? 'current' : '')} pagination-list__item pagination-list__item--num" data-info='${i}'>${i}</li>`;
-      if (currentPage - 4 === i) markup += `<li class="pagination-list__item pagination-list__item--dotted" data-info="dots">...</li>`;
-  };
+    if (currentPage + 4 === i)
+      markup += `<li class="pagination-list__item pagination-list__item--dotted" data-info='dots'>...</li>`;
+    if (i === 1 || i === totalPages || (i >= currentPage - 2 && i <= currentPage + 2))
+      markup += `<li class="${
+        currentPage === i ? 'current' : ''
+      } pagination-list__item pagination-list__item--num" data-info='${i}'>${i}</li>`;
+    if (currentPage - 4 === i)
+      markup += `<li class="pagination-list__item pagination-list__item--dotted" data-info="dots">...</li>`;
+  }
   refs.paginationList.innerHTML = '';
   refs.paginationList.innerHTML = markup;
 };
