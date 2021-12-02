@@ -121,7 +121,6 @@ function isModalOpen() {
 
 function onModalClose() {
   renderLsMarkupListByActive();
-
   document.body.classList.remove('show-modal', 'no-scroll');
 }
 
@@ -192,7 +191,9 @@ function showModalTrailer(obj) {
   if (!obj) return false;
 
   instance = basicLightbox.create(`
-    <iframe src="https://www.youtube.com/embed/${obj.key}" width="560" height="315" frameborder="0"></iframe>
+    <div class="video-responsive">
+    <iframe src="https://www.youtube.com/embed/${obj.key}" width="auto" height="auto" frameborder="0" allowfullscreen></iframe>
+    </div>
 `);
 
   instance.show();
