@@ -70,27 +70,27 @@ function markupInfo() {
     <tbody class="table__body">
       <tr class="table__row">
         <td class="table__title">Amount of watched movies</td>
-        <td class="table__text table__text--center votes--orange">${takeAmountInfoLs(
+        <td class="table__text-bt  table__text--center votes--orange">${takeAmountInfoLs(
           WEB_LOCAL_WATCHED,
         )}</td>
       </tr>
       <tr class="table__row">
         <td class="table__title">Amount of queue movies</td>
-        <td class="table__text table__text--center votes--orange">${takeAmountInfoLs(
+        <td class="table__text-bt  table__text--center votes--orange">${takeAmountInfoLs(
           WEB_LOCAL_QUEUE,
         )}</td>
       </tr>
       <tr class="table__row">
         <td class="table__title">Time spent with me</td>
-        <td class="table__text">${createDate(passedTime())}</td>
+        <td class="table__text-user">${createDate(passedTime())}</td>
       </tr>
       <tr class="table__row">
         <td class="table__title">Registration date</td>
-        <td class="table__text">${createFullDate(storage.get(TIME_OF_CONNECTION))}</td>
+        <td class="table__text-user">${createFullDate(storage.get(TIME_OF_CONNECTION))}</td>
       </tr>
       <tr class="table__row">
         <td class="table__title">Current date</td>
-        <td class="table__text">${createFullDate(Date.now())}</td>
+        <td class="table__text-user">${createFullDate(Date.now())}</td>
       </tr>
     </tbody>
   </table>
