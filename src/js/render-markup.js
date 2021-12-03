@@ -54,7 +54,7 @@ function createMarkupInfoModal({
           <tbody class="table__body">
             <tr class="table__row">
               <td class="table__title">Vote / Votes</td>
-              <td class="table__text"><span class="table__text-vote">${vote_average}</span><span class="votes">${vote_count}</span></td>
+              <td class="table__text"><span class="table__text-vote votes--orange">${vote_average}</span><span class="votes">${vote_count}</span></td>
             </tr>
             <tr class="table__row">
               <td class="table__title">Popularity</td>
