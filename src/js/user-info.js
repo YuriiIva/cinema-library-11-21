@@ -1,10 +1,13 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import storage from './servises/localStorage.js';
 import { WEB_LOCAL_WATCHED, WEB_LOCAL_QUEUE, TIME_OF_CONNECTION } from './servises/constants.js';
+import userPic from '../img/film-interpretation.jpg';
 
 import refs from './refs.js';
 
 const getTime = storage.get(TIME_OF_CONNECTION);
+
+let isUserInfoOpen = false;
 
 firstLoginTime();
 
@@ -40,10 +43,18 @@ function takeAmountInfoLs(key) {
 
 function renderMrkupInfo() {
   refs.userInfo.innerHTML = markupInfo();
-  // setTimeout(() => (refs.userInfo.innerHTML = ''), 7000);
+  refs.userSection.classList.toggle('vusually-hidden');
+  isUserInfoOpen = true;
+
+  setTimeout(() => {
+    refs.userInfo.innerHTML = '';
+    refs.userSection.classList.toggle('vusually-hidden');
+    isUserInfoOpen = false;
+  }, 7000);
 }
 
 function onShowInfoByLs() {
+  if (isUserInfoOpen) return false;
   renderMrkupInfo();
 }
 
@@ -52,28 +63,34 @@ refs.showInfo.addEventListener('click', onShowInfoByLs);
 function markupInfo() {
   const genres = sortAllGenres();
 
-  return `<h2 class="user__title">User Info</h2>
+  return `
+  <div class="wrapper-user-img"> <img class="user__img" src="${userPic}" alt="Look movie" /></div>
+  <h3 class="user__title-inf"><span class="user__title--first">you</span> are the director of your novel ;) </h3>
   <table class="table table--user">
     <tbody class="table__body">
-    <tr class="table__row">
-        <td class="table__title">Registration date</td>
-        <td class="table__text">${createFullDate(storage.get(TIME_OF_CONNECTION))}</td>
+      <tr class="table__row">
+        <td class="table__title">Amount of watched movies</td>
+        <td class="table__text table__text--center votes--orange">${takeAmountInfoLs(
+          WEB_LOCAL_WATCHED,
+        )}</td>
       </tr>
       <tr class="table__row">
-        <td class="table__title">Date now</td>
-        <td class="table__text">${createFullDate(Date.now())}</td>
+        <td class="table__title">Amount of queue movies</td>
+        <td class="table__text table__text--center votes--orange">${takeAmountInfoLs(
+          WEB_LOCAL_QUEUE,
+        )}</td>
       </tr>
       <tr class="table__row">
         <td class="table__title">Time spent with me</td>
         <td class="table__text">${createDate(passedTime())}</td>
       </tr>
       <tr class="table__row">
-        <td class="table__title">Info about list watched</td>
-        <td class="table__text table__text-vote">${takeAmountInfoLs(WEB_LOCAL_WATCHED)}</td>
+        <td class="table__title">Registration date</td>
+        <td class="table__text">${createFullDate(storage.get(TIME_OF_CONNECTION))}</td>
       </tr>
       <tr class="table__row">
-        <td class="table__title">Info about list queue</td>
-        <td class="table__text table__text-vote">${takeAmountInfoLs(WEB_LOCAL_QUEUE)}</td>
+        <td class="table__title">Current date</td>
+        <td class="table__text">${createFullDate(Date.now())}</td>
       </tr>
     </tbody>
   </table>
@@ -83,18 +100,10 @@ function markupInfo() {
 
 function createMarkupTableGenres(array) {
   if (array.length < 1) return '<p>Please, add films<p>';
-  return `<table class="table table--genres">
-    <thead class="table__head">
-      <th class="table__head-text">Genres</th>
-      <th class="table__head-text">Amount</th>
-    </thead>
-    <tbody class="table__body">
-      ${createMarkupUserInfo(array)}
-    </tbody>
-  </table>
-  <p class="user__text">Your lovely genre - <span class="user__text-info">${
-    array[0][0]
-  }</span></p>`;
+  return `
+  <p class="user__text">Your lovely genre: <span class="user__text-info">${array
+    .slice(0, 3)
+    .join(', ')}</span></p>`;
 }
 
 const createDate = ms => {
@@ -144,7 +153,9 @@ function sortAllGenres() {
     }),
     {},
   );
-  return Object.entries(genres).sort((a, b) => b[1] - a[1]);
+  return Object.entries(genres)
+    .sort((a, b) => b[1] - a[1])
+    .map(([genre, numb]) => genre);
 }
 
 const createMarkupUserInfo = array =>

@@ -97,7 +97,7 @@ body.show-modal .modal-card {
 
 .wrapper-poster {
   position: relative;
-
+  border-radius: 5px;
   @media screen and (max-width: 768px) {
     margin: 0 auto;
     width: 100%;
@@ -114,10 +114,13 @@ body.show-modal .modal-card {
   }
 
   @media screen and (min-width: 1024px) {
-    border-radius: 5px;
     overflow: hidden;
     min-width: 396px;
     height: 477px;
+  }
+  &:hover {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 1), -23px 0 20px -23px rgba(0, 0, 0, 0.8),
+      23px 0 20px -23px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.1) inset;
   }
 }
 
@@ -284,20 +287,20 @@ body.show-modal .modal-card {
   }
 
   &__text-vote {
-    display: inline-block;
-    text-align: center;
-
     margin-right: 11px;
-    padding: 1px 10px;
-    height: 16px;
-    width: 36px;
-
-    border-radius: 5px;
-    background-color: var(--accent-color);
-    color: var(--white-color);
+    display: inline-block;
   }
 }
 
+.votes--orange {
+  text-align: center;
+  padding: 1px 10px;
+  height: 16px;
+  width: 36px;
+  border-radius: 5px;
+  background-color: var(--accent-color);
+  color: var(--white-color);
+}
 .votes {
   position: relative;
   display: inline-block;

@@ -31,4 +31,5 @@ export default {
 
   showInfo: document.querySelector('[data-info="show"]'),
   userInfo: document.querySelector('.user-info'),
+  userSection: document.querySelector('.user'),
 };
