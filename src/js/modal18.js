@@ -4,8 +4,8 @@ import refs from './refs';
 
 const verification = e => {
   if (e.target.tagName === 'BUTTON' && e.target.dataset.action === 'no') {
-    Notiflix.Notify.failure(' Sorry! You still need to grow up');
-    return false;
+    Notiflix.Notify.success(' Hello, my young Friend');
+    // return false;
   }
   refs.divBlur.classList.remove('in-active');
   refs.modal18.classList.add('is-hidden-btn');
