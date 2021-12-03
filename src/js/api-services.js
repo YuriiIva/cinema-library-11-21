@@ -95,6 +95,7 @@ const getFilm = () => {
 };
 
 refs.paginationWrapper.addEventListener('click', e => {
+
   if (e.currentTarget === e.target) {
     return;
   }
@@ -190,7 +191,8 @@ const handError = error => {
 
 const onClearInput = () => {
   refs.noSearchName.innerHTML = '';
-  createFetch();
+
+  // createFetch();
 };
 refs.form.addEventListener('submit', onSearchFilm);
 refs.inputFilm.addEventListener('click', onClearInput);
