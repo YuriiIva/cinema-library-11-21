@@ -8,7 +8,6 @@ import { createPagination } from './pagination';
 function onWatchedMarkupLs(page) {
   resetGallery();
   let data = storage.get(WEB_LOCAL_WATCHED);
-  let pages = Math.ceil(data.length / 20);
 
   if (!data || data.length < 1) {
     refs.noFilm.classList.remove('vusually-hidden');
@@ -18,6 +17,7 @@ function onWatchedMarkupLs(page) {
     return;
   }
 
+  let pages = Math.ceil(data.length / 20);
   const start = (page - 1) * 20;
   const dataLs = data.slice(start, start + 20);
 
@@ -33,7 +33,6 @@ function onWatchedMarkupLs(page) {
 function onQueueMarkupLs(page) {
   resetGallery();
   let data = storage.get(WEB_LOCAL_QUEUE);
-  let pages = Math.ceil(data.length / 20);
 
   if (!data || data.length < 1) {
     refs.noFilmQ.classList.remove('vusually-hidden');
@@ -44,6 +43,7 @@ function onQueueMarkupLs(page) {
     return;
   }
 
+  let pages = Math.ceil(data.length / 20);
   const start = (page - 1) * 20;
   const dataLs = data.slice(start, start + 20);
   const markup = createMarkupLs(dataLs);
