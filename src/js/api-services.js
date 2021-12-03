@@ -49,6 +49,8 @@ const createFetch = () => {
 const renderFotos = results => {
   const markup = createMarkup(results);
   refs.ulGallery.innerHTML = markup;
+
+  refs.failImg.classList.add("vusually-hidden");
 };
 createFetch();
 
