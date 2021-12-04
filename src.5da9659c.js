@@ -67,4 +67,4 @@ const e=document.querySelector(".up"),n=window.innerHeight,t=function(){o(),i()}
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/api-services"),require("./js/modal-card"),require("./js/modal-team"),require("./js/render-markup"),require("./js/movieGenres"),require("./js/pagination"),require("./js/switch-page"),require("./js/user-info"),require("./js/modal18"),require("./js/switch-list"),require("./js/up-to-top");
 },{"./sass/main.scss":"clu1","./js/api-services":"vqRV","./js/modal-card":"DnHo","./js/modal-team":"O9Th","./js/render-markup":"gNZN","./js/movieGenres":"Irho","./js/pagination":"o8lo","./js/switch-page":"YsJ2","./js/user-info":"GJZ1","./js/modal18":"S6ZQ","./js/switch-list":"fWn9","./js/up-to-top":"dLyW"}]},{},["Focm"], null)
-//# sourceMappingURL=/cinema-library-11-21/src.0e700c2f.js.map
+//# sourceMappingURL=/cinema-library-11-21/src.5da9659c.js.map
