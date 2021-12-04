@@ -11,13 +11,18 @@ import { onWatchedMarkupLs } from './library';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY1 = '1f37c9d1204318c8a24c8b0a5ae713a0';
 const API_KEY2 = 'f9b3a8f6c2c6ac6ea45f1e88181f9357';
+const KEY_ADULT = 'age-check-adult';
 let currentPage = 1;
 let totalPages = 1000;
+
+let adult = false;
+
 let currentSearchName = '';
 
 const searchFilm = nameFilm => {
+  adult = sessionStorage.getItem(KEY_ADULT);
   return fetch(
-    `${BASE_URL}/search/movie?api_key=${API_KEY1}&query=${nameFilm}&id&genres&backdrop_path&original_title&homepage&release_date&vote_average&vote_count&overview&popularity&adult&page=${currentPage}`,
+    `${BASE_URL}/search/movie?api_key=${API_KEY1}&query=${nameFilm}&id&genres&backdrop_path&original_title&homepage&release_date&vote_average&vote_count&overview&popularity&include_adult=${adult}&page=${currentPage}`,
   ).then(response => {
     if (!response.ok) {
       return Promise.reject(new Error(error));
@@ -27,7 +32,10 @@ const searchFilm = nameFilm => {
 };
 
 const createFetch = () => {
-  return fetch(`${BASE_URL}/trending/movie/week?api_key=${API_KEY1}&adult&page=${currentPage}`)
+  adult = sessionStorage.getItem(KEY_ADULT);
+  return fetch(
+    `${BASE_URL}/trending/movie/week?api_key=${API_KEY1}&include_adult=${adult}&page=${currentPage}`,
+  )
     .then(response => {
       if (response.status === 401) {
         return Notiflix.Notify.failure(' Invalid API key: You must be granted a valid key');
@@ -50,7 +58,7 @@ const renderFotos = results => {
   const markup = createMarkup(results);
   refs.ulGallery.innerHTML = markup;
 
-  refs.failImg.classList.add("vusually-hidden");
+  refs.failImg.classList.add('vusually-hidden');
 };
 createFetch();
 
@@ -95,7 +103,6 @@ const getFilm = () => {
 };
 
 refs.paginationWrapper.addEventListener('click', e => {
-
   if (e.currentTarget === e.target) {
     return;
   }
@@ -196,4 +203,4 @@ const onClearInput = () => {
 };
 refs.form.addEventListener('submit', onSearchFilm);
 refs.inputFilm.addEventListener('click', onClearInput);
-export { createFetch, onClearInput };
+export { createFetch, onClearInput, adult };
